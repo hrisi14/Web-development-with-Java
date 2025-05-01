@@ -1,0 +1,950 @@
+{
+	"info": {
+		"_postman_id": "ae8e22e9-74ba-4481-82aa-abc244955734",
+		"name": "EventOrganizer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43731959",
+		"_collection_link": "https://hristina-4038412.postman.co/workspace/Hristina's-Workspace~24a69649-9e43-494c-8e4b-3e189604bfd1/collection/43731959-ae8e22e9-74ba-4481-82aa-abc244955734?action=share&source=collection_link&creator=43731959"
+	},
+	"item": [
+		{
+			"name": "Get all events",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{APItoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/api/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:80/api/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[ {\r\n  \"id\": 1\r\n  \"title\": \"Tech Expo 2025\",\r\n  \"description\": \"Annual Tech Event\",\r\n  \"category\": \"Technology\",\r\n  \"location\": \"New York\",\r\n  \"start_date\": \"2025-05-01T10:00:00Z\",\r\n  \"end_date\": \"2025-05-01T18:00:00Z\",\r\n  \"rules\": \"No late entry\",\r\n  \"organizer_id\": 1,\r\n  \"sponsor_id\": 2\r\n}, \r\n{\r\n  \"id\": 2,\r\n  \"title\": \"Art exhibition 2025\",\r\n  \"description\": \"Annual Art Event\",\r\n  \"category\": \"Arts\",\r\n  \"location\": \"Sofia, National Art Gallery\",\r\n  \"start_date\": \"2025-05-01T10:00:00Z\",\r\n  \"end_date\": \"2025-05-10T18:00:00Z\",\r\n  \"rules\": \"No foods or drinks\",\r\n  \"organizer_id\": 9,\r\n  \"sponsor_id\": 5\r\n} ]"
+				}
+			]
+		},
+		{
+			"name": "Create new event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{APItoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Tech Expo 2025\",\r\n  \"description\": \"Annual Tech Event\",\r\n  \"category\": \"Technology\",\r\n  \"location\": \"New York\",\r\n  \"start_date\": \"2025-05-01T10:00:00Z\",\r\n  \"end_date\": \"2025-05-01T18:00:00Z\",\r\n  \"rules\": \"No late entry\",\r\n  \"organizer_id\": 1,\r\n  \"sponsor_id\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create new event",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Tech Expo 2025\",\r\n  \"description\": \"Annual Tech Event\",\r\n  \"category\": \"Technology\",\r\n  \"location\": \"New York\",\r\n  \"start_date\": \"2025-05-01T10:00:00Z\",\r\n  \"end_date\": \"2025-05-01T18:00:00Z\",\r\n  \"rules\": \"No late entry\",\r\n  \"organizer_id\": 1,\r\n  \"sponsor_id\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successful new event creation.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get event by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{APItoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/events/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"{id}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get event by ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://71ad3f1f-acb4-40b8-9743-15c8730efa31.mock.pstmn.io/api/events/8",
+							"protocol": "https",
+							"host": [
+								"71ad3f1f-acb4-40b8-9743-15c8730efa31",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"api",
+								"events",
+								"8"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 8,\n    \"title\": \"Park fest 2025\",\n    \"description\": \"Youth musical event\",\n    \"category\": \"entertainment\",\n    \"location\": \"Sofia, Students town, Students park\",\n    \"start_date\": \"2025-05-01T10:00:00Z\",\n    \"end_date\": \"2025-05-10T18:00:00Z\",\n    \"rules\": \"No form of aggression are tolerated\",\n    \"organizer_id\": 9,\n    \"sponsor_id\": 5\n}"
+				}
+			]
+		},
+		{
+			"name": "Update event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{APItoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 8,\r\n  \"title\": \"Park Fest 2025: Summer Edition\",\r\n  \"description\": \"Youth musical event\",\r\n  \"category\": \"entertainment\",\r\n  \"location\": \"Sofia Arena, Hall 2\",\r\n  \"start_date\": \"2025-05-01T10:00:00Z\",\r\n  \"end_date\": \"2025-05-10T18:00:00Z\",\r\n  \"rules\": \"No form of aggression are tolerated\",\r\n  \"organizer_id\": 9,\r\n  \"sponsor_id\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/events/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Partial update of event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{APItoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/events/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"{id}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Change event's title and location",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Park Fest 2025: Summer Edition\",\r\n  \"location\": \"Sofia Arena, Hall 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/events/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"8"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 8,\n    \"title\": \"Park Fest 2025: Summer Edition\",\n    \"description\": \"Youth musical event\",\n    \"category\": \"entertainment\",\n    \"location\": \"Sofia Arena, Hall 2\",\n    \"start_date\": \"2025-05-01T10:00:00Z\",\n    \"end_date\": \"2025-05-10T18:00:00Z\",\n    \"rules\": \"No form of aggression are tolerated\",\n    \"organizer_id\": 9,\n    \"sponsor_id\": 5\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{APItoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/events/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"{id}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Successful delete",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/events/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"8"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Event with id 8 has been deleted successfully.\"\n}"
+				},
+				{
+					"name": "Event not found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/events/100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"100"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"No event with such an id exists.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Register new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"anna.smith@example.com\",\r\n  \"password\": \"securePassword123\",\r\n  \"first_name\": \"Anna\",\r\n  \"last_name\": \"Smith\",\r\n  \"username\": \"annasmith\",\r\n  \"role\": \"guest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register guest",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"anna.smith@example.com\",\r\n  \"password\": \"securePassword123\",\r\n  \"first_name\": \"Anna\",\r\n  \"last_name\": \"Smith\",\r\n  \"username\": \"annasmith\",\r\n  \"role\": \"guest\"\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 7,\n    \"message\": \"User has been registered successfully.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "User login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"anna.smith@example.com\",\r\n  \"password\": \"securePassword123\"\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Successful login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"anna.smith@example.com\",\r\n  \"password\": \"securePassword123\"\r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User has logged in successfully.\",\n    \"token\": \"MyFirstAPItoken-example\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Register for an event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer MyFisrtAPItoken-example",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/events/{id}/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"{id}",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register for an event",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer MyFisrtAPItoken-example",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/events/8/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"8",
+								"register"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User has been successfully registered for event.\",\n    \"event_id\": 8\n}"
+				}
+			]
+		},
+		{
+			"name": "Get user by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{APItoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"{id}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get user by ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"7"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"email\": \"anna.smith@example.com\",\n    \"password\": \"securePassword123\",\n    \"first_name\": \"Anna\",\n    \"last_name\": \"Smith\",\n    \"username\": \"annasmith\",\n    \"role\": \"guest\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get event guests",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{APItoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/events/{id}/guests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"events",
+						"{id}",
+						"guests"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get event guests",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/events/8/guests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"8",
+								"guests"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"user_id\": 3,\n        \"first_name\": \"Elena\",\n        \"last_name\": \"Ivanova\",\n        \"email\": \"elena.ivanova@example.com\",\n        \"username\": \"elena_i\"\n    },\n    {\n        \"user_id\": 5,\n        \"first_name\": \"Mark\",\n        \"last_name\": \"Petrov\",\n        \"email\": \"mark.petrov@example.com\",\n        \"username\": \"markp\"\n    },\n    {\n        \"user_id\": 7,\n        \"first_name\": \"Iva\",\n        \"last_name\": \"Dimitrova\",\n        \"email\": \"iva.dimitrova@example.com\",\n        \"username\": \"ivad\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Pay ticket",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{APItoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"event_id\": 8,\r\n  \"price\": 35,\r\n  \"payment_method\": \"credit_card\",\r\n  \"currency\": \"EUR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tickets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tickets"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Successful purchase",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"event_id\": 8,\r\n  \"price\": 35,\r\n  \"payment_method\": \"credit_card\",\r\n  \"currency\": \"EUR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tickets"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Ticket purchased successfully\",\n    \"ticket_id\": 112,\n    \"event_id\": 8,\n    \"user_id\": 7,\n    \"price\": 35,\n    \"currency\": \"EUR\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "APItoken",
+			"value": "MyFirstAPItoken",
+			"type": "string"
+		}
+	]
+}
