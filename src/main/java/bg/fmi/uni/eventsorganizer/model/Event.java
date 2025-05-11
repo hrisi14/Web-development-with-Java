@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Event {
     private static int eventIdCounter = 1;
 
-    private int id;
+    private Integer id;
     private String title;
     private String description;
     private String category;
@@ -31,7 +31,7 @@ public class Event {
         this.sponsorId = sponsorId;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -61,5 +61,33 @@ public class Event {
 
     public String getRules() {
         return rules;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setRules(String rules) {
+        this.rules = rules;
     }
 }
