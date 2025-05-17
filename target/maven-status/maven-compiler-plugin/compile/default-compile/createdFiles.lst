@@ -1,0 +1,6 @@
+bg/fmi/uni/eventsorganizer/dto/EventDto.class
+bg/fmi/uni/eventsorganizer/model/Event.class
+bg/fmi/uni/eventsorganizer/service/EventService.class
+bg/fmi/uni/eventsorganizer/EventsOrganizerApplication.class
+bg/fmi/uni/eventsorganizer/repository/EventRepository.class
+bg/fmi/uni/eventsorganizer/controller/EventController.class
