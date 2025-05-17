@@ -20,6 +20,10 @@ public class UserService {
                 .toList();
     }
 
+    public Optional<UserDto> getUserByUsername(String username) {
+        return userRepository.findByUsername(username).map(this::toDto);
+    }
+
     public Optional<UserDto> getUserById(Integer id) {
         return userRepository.findById(id).map(this::toDto);
     }
