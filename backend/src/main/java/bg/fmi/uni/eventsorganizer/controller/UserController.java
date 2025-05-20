@@ -1,12 +1,16 @@
 package bg.fmi.uni.eventsorganizer.controller;
 
 import bg.fmi.uni.eventsorganizer.dto.UserDto;
+import bg.fmi.uni.eventsorganizer.dto.UserSessionDto;
 import bg.fmi.uni.eventsorganizer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
@@ -28,6 +32,17 @@ public class UserController {
         return userService.getUserById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, Integer>> login(@RequestBody UserSessionDto userLoginDto) {
+        Integer userId = userService.authenticate(userLoginDto.getUsername(), userLoginDto.getPassword());
+
+        if (userId != null) {
+            return ResponseEntity.ok(Map.of("userId", userId));
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("Invalid credentials", null));;
     }
 
     @PostMapping

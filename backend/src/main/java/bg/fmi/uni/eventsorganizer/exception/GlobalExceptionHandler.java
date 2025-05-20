@@ -13,16 +13,6 @@ import bg.fmi.uni.eventsorganizer.dto.APIErrorDto;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(ItemNotFoundException.class)
-    public APIErrorDto handleNotFound(ItemNotFoundException ex) {
-        return new APIErrorDto(
-                ex.getMessage(),
-                HttpStatus.NOT_FOUND.value(),
-                LocalDateTime.now()
-        );
-    }
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalArgumentException.class)
     public APIErrorDto handleIllegalData(IllegalArgumentException ex) {

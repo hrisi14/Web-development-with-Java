@@ -20,6 +20,15 @@ public class UserService {
                 .toList();
     }
 
+    public Integer authenticate(String username, String password) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.getPassword().equals(password)) {
+            return user.getId();
+        }
+
+        return null;
+    }
+
     public Optional<UserDto> getUserByUsername(String username) {
         return userRepository.findByUsername(username).map(this::toDto);
     }
