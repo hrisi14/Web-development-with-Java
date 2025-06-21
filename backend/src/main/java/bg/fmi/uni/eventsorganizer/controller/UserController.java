@@ -42,7 +42,7 @@ public class UserController {
             return ResponseEntity.ok(Map.of("userId", userId));
         }
 
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("Invalid credentials", null));;
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("Invalid credentials", null));
     }
 
     @PostMapping("/register")   //newly added
