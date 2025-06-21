@@ -45,7 +45,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("Invalid credentials", null));;
     }
 
-    @PostMapping
+    @PostMapping("/register")   //newly added
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto dto) {
         UserDto created = userService.addUser(dto);
         return ResponseEntity.ok(created);
