@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { UserRegister } from '../model/user-register.model'
+import { Router } from '@angular/router';
 
 //TO DO: add submission and validation handling!!!
 
@@ -14,7 +16,7 @@ templateUrl: './register.component.html',
 styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-user = {
+userRegister: UserRegister = {
 username: '',
 firstName: '',
 lastName: '',
@@ -22,12 +24,16 @@ email: '',
 password: '',
 };
 
-constructor(private authService: AuthService) {}
+constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
-    this.authService.register(this.user).subscribe({
+    this.authService.register(this.userRegister).subscribe({
       next: () => alert('Registration successful!'),
       error: (err) => alert('Registration failed: ' + err.error.message),
     });
+  }
+
+    goToLogin() {
+    this.router.navigate(['/login']);
   }
 }

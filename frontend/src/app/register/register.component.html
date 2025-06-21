@@ -4,25 +4,25 @@
 <form id="register-form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
 
   <label class="input-label" for="username"> Потребителско име </label>
-  <input class="input-field" type="text" name="username" id="username" [(ngModel)]="user.username" placeholder="Потребителско име" required />
+  <input class="input-field" type="text" name="username" id="username" [(ngModel)]="userRegister.username" placeholder="Потребителско име" required />
 
   <label class="input-label" for="firstName"> Име </label>
-  <input class="input-field" type="text" name="firstName" id="firstName" [(ngModel)]="user.firstName" placeholder="Име" required />
+  <input class="input-field" type="text" name="firstName" id="firstName" [(ngModel)]="userRegister.firstName" placeholder="Име" required />
 
   <label class="input-label" for="lastName"> Фамилия </label>
-  <input class="input-field" type="text" name="lastName" id="lastName" [(ngModel)]="user.lastName" placeholder="Фамилия" required />
+  <input class="input-field" type="text" name="lastName" id="lastName" [(ngModel)]="userRegister.lastName" placeholder="Фамилия" required />
 
   <label class="input-label" for="email"> Имейл </label>
-  <input class="input-field" type="email" name="email" id="email" [(ngModel)]="user.email" placeholder="Имейл" required />
+  <input class="input-field" type="email" name="email" id="email" [(ngModel)]="userRegister.email" placeholder="Имейл" required />
 
   <label class="input-label" for="password"> Парола </label>
-  <input class="input-field" type="password" name="password" id="password" [(ngModel)]="user.password" placeholder="Парола" required />
+  <input class="input-field" type="password" name="password" id="password" [(ngModel)]="userRegister.password" placeholder="Парола" required />
   <!--<select name="roleList" id="roles">
     <option value="teacher">Преподавател</option>
     <option value="student">Студент</option>
   </select>-->   <!--I realized there may be no need for roles since user's actions are defined per event rather than per user-->
   <button type="submit" id="register-btn">Регистрация</button>
-  <button type="button" id="login-btn">Вход</button>
+  <button type="button" (click)="goToLogin()" id="login-btn">Вход</button>
 </form>
 <label class="input-label" id="response-label"> </label>
 </section>

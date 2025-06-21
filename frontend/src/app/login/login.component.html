@@ -1,0 +1,17 @@
+<section id="login-wrapper">
+  <h2>Вход</h2>
+
+  <form id="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+
+    <label class="input-label" for="email"> Имейл </label>
+    <input class="input-field" type="email" name="email" id="email" [(ngModel)]="userLogin.email" placeholder="Имейл" required />
+
+    <label class="input-label" for="password"> Парола </label>
+    <input class="input-field" type="password" name="password" id="password" [(ngModel)]="userLogin.password" placeholder="Парола" required />
+
+    <label class="input-label" id="register-label" for="register-btn"> Нямате профил? </label>
+    <button type="button" (click)="goToRegistration()" id="register-btn">Регистрация</button>
+    <button type="submit" id="login-btn">Вход</button>
+  </form>
+  <label class="input-label" id="response-label"> </label>
+</section>
