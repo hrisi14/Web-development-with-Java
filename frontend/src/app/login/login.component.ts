@@ -16,15 +16,16 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   userLogin: UserLogin = {
-  email: '',
+  username: '',
   password: '',
 };
 
-  constructor(private authService: AuthService, private router: Router) {}
+constructor(private authService: AuthService, private router: Router) {}
 
 //To add events submission login here!!!
 
   onSubmit() {
+    console.log('Login Payload:', this.userLogin);
     this.authService.login(this.userLogin).subscribe({
       next: () => alert('Login successful!'),
       error: (err) => alert('Login failed: ' + err.error.message),

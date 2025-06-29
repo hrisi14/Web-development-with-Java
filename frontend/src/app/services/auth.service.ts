@@ -13,10 +13,12 @@ private apiUrl = 'http://localhost:8080/api/users';
 constructor(private http: HttpClient) {}
 
   register(userRegister: UserRegister): Observable<any> {
+    console.log('auth.service.ts-> User Register Payload:', userRegister);
     return this.http.post(`${this.apiUrl}/register`, userRegister);
   }
 
   login(userLogin: UserLogin): Observable<any> {
+    console.log('auth.service.ts->Login Payload:', userLogin);
     return this.http.post(`${this.apiUrl}/login`, userLogin);
 }
 }

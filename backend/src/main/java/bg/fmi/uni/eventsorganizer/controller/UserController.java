@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -25,6 +26,14 @@ public class UserController {
     @GetMapping
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @PostMapping("/register")   //newly added
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto dto) {
+        System.out.println("Incoming dto: " + dto);
+        UserDto created = userService.addUser(dto);
+        System.out.println("Created dto: " + dto);
+        return ResponseEntity.ok(created);
     }
 
     @GetMapping("/{id}")
@@ -45,11 +54,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("Invalid credentials", null));
     }
 
-    @PostMapping("/register")   //newly added
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto dto) {
-        UserDto created = userService.addUser(dto);
-        return ResponseEntity.ok(created);
-    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable Integer id, @RequestBody UserDto dto) {

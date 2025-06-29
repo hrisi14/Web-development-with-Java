@@ -43,6 +43,7 @@ public class UserService {
 
     public UserDto addUser(UserDto userDto) {
         User user = toEntity(userDto);
+        System.out.println("User service processing user");
         return toDto(userRepository.save(user));
     }
 

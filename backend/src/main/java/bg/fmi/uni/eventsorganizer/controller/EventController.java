@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/events")
 public class EventController {

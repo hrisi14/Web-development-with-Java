@@ -3,8 +3,8 @@
 
   <form id="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
 
-    <label class="input-label" for="email"> Имейл </label>
-    <input class="input-field" type="email" name="email" id="email" [(ngModel)]="userLogin.email" placeholder="Имейл" required />
+    <label class="input-label" for="username"> Потребителско име </label>
+    <input class="input-field" type="text" name="username" id="username" [(ngModel)]="userLogin.username" placeholder="Потребителско име" required />
 
     <label class="input-label" for="password"> Парола </label>
     <input class="input-field" type="password" name="password" id="password" [(ngModel)]="userLogin.password" placeholder="Парола" required />

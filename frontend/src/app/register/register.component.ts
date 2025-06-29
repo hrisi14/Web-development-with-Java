@@ -17,16 +17,19 @@ styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
 userRegister: UserRegister = {
+
 username: '',
 firstName: '',
 lastName: '',
 email: '',
 password: '',
+role: ''
 };
 
 constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
+   console.log('User Register Payload:', this.userRegister);
     this.authService.register(this.userRegister).subscribe({
       next: () => alert('Registration successful!'),
       error: (err) => alert('Registration failed: ' + err.error.message),
