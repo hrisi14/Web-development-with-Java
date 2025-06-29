@@ -1,0 +1,27 @@
+.event-container {
+    background-color: #E6EFE6;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(51, 51, 51, 0.08);
+    padding: 24px 32px;
+    color: #333;
+    font-family: "Roboto", "Arial", sans-serif;
+    transition: box-shadow 0.2s;
+}
+
+.event-container:hover {
+    box-shadow: 0 4px 16px rgba(51, 51, 51, 0.16);
+    background-color: #e0e0e0;
+}
+
+.event-title {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #79B791;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.event-details p {
+    margin: 4px 0;
+    font-size: 1em;
+}

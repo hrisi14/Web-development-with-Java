@@ -5,6 +5,7 @@ import bg.fmi.uni.eventsorganizer.service.EventService;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -32,5 +33,10 @@ public class EventController {
         );
         boolean isUpdated = eventService.updateEvent(eventId, eventDto);
         return isUpdated ? "Event updated successfully." : "Event update failed.";
+    }
+
+    @GetMapping
+    public List<EventDto> getAllEvents() {
+        return eventService.getAllEvents();
     }
 }

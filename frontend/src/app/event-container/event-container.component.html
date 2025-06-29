@@ -1,0 +1,10 @@
+<div class="event-container" *ngIf="event">
+  <h3 class="event-title">{{ event?.title }}</h3>
+  <div class="event-details">
+    <p class="event-description">{{ event?.description }}</p>
+    <p><strong>Категория:</strong> {{ event?.category }}</p>
+    <p><strong>Локация:</strong> {{ event?.location }}</p>
+    <p><strong>Начало:</strong> {{ event?.startDate }}</p>
+    <p><strong>Край:</strong> {{ event?.endDate }}</p>
+  </div>
+</div>
