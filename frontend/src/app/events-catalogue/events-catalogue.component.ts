@@ -17,8 +17,15 @@ export class EventsCatalogueComponent implements OnInit {
   constructor(private eventService: EventService) {}
 
   ngOnInit() {
+    this.loadEvents();
+  }
+
+  loadEvents() {
     this.eventService.getAllEvents().subscribe({
-      next: (events) => this.events = events,
+      next: (events) => {
+        console.log('Получени събития:', events);
+        this.events = events;
+      },
       error: (err) => {
         console.error('Грешка при зареждане на събитията', err);
         this.events = [];

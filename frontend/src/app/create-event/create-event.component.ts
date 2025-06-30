@@ -16,7 +16,6 @@ import { Event } from '../model/event.model';
 })
 export class CreateEventComponent implements OnInit {
   event: Event = {
-    id: 0,
     title: '',
     description: '',
     category: '',
@@ -25,9 +24,9 @@ export class CreateEventComponent implements OnInit {
     endDate: '',
     rules: '',
     likes: 0,
-    imageUrl: 'http//example.com/default-image.jpg',
-    organizerId: 1,
-    sponsorId: 1
+    imageUrl: '',
+    organizerId: null,
+    sponsorId: null
   };
 
   successMessage = '';
@@ -52,15 +51,21 @@ export class CreateEventComponent implements OnInit {
       this.errorMessage = 'Началната дата трябва да е преди крайната дата.';
       return;
     }
-    const eventToSend = { ...this.event };
-    delete (eventToSend as any).id;
+
+    // Преобразуване на датите към ISO string, ако backend-ът очаква LocalDateTime
+    const eventToSend = {
+      ...this.event,
+      startDate: new Date(this.event.startDate).toISOString(),
+      endDate: new Date(this.event.endDate).toISOString(),
+      likes: this.event.likes ?? 0,
+      imageUrl: this.event.imageUrl ?? ''
+    };
 
     this.eventService.addEvent(eventToSend).subscribe({
       next: () => {
         this.successMessage = 'Събитието беше създадено успешно!';
         this.errorMessage = '';
         this.event = {
-          id: 0,
           title: '',
           description: '',
           category: '',
@@ -69,9 +74,9 @@ export class CreateEventComponent implements OnInit {
           endDate: '',
           rules: '',
           likes: 0,
-          imageUrl: 'https://example.com/default-image.jpg',
-          organizerId: 1,
-          sponsorId: 1
+          imageUrl: '',
+          organizerId: null,
+          sponsorId: null
         };
         setTimeout(() => {
           this.router.navigate(['/events-catalogue']);
@@ -80,7 +85,7 @@ export class CreateEventComponent implements OnInit {
       error: (err: unknown) => {
         console.error('Error creating event', err);
         this.successMessage = '';
-        this.errorMessage = 'Възникна грешка при създаване на събитието.';
+        this.errorMessage = 'Възникна грешка при създаване на събитието. Проверете дали всички полета са попълнени коректно.';
       }
     });
   }
