@@ -1,0 +1,37 @@
+<div id="create-event-wrapper">
+  <form id="create-event-form" [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <h2>Създаване на събитие</h2>
+
+    <label class="input-label">Заглавие:</label>
+    <input class="input-field" formControlName="title" />
+
+    <label class="input-label">Описание:</label>
+    <textarea class="input-field" formControlName="description"></textarea>
+
+    <label class="input-label">Категория:</label>
+    <input class="input-field" formControlName="category" />
+
+    <label class="input-label">Локация:</label>
+    <input class="input-field" formControlName="location" />
+
+    <label class="input-label">Начална дата:</label>
+    <input type="datetime-local" class="input-field" formControlName="startDate" />
+
+    <label class="input-label">Крайна дата:</label>
+    <input type="datetime-local" class="input-field" formControlName="endDate" />
+
+    <label class="input-label">Правила:</label>
+    <textarea class="input-field" formControlName="rules"></textarea>
+
+    <label class="input-label">Организатор (ID):</label>
+    <input type="number" class="input-field" formControlName="organizerId" />
+
+    <label class="input-label">Спонсор (ID):</label>
+    <input type="number" class="input-field" formControlName="sponsorId" />
+
+    <button id="create-event-btn" type="submit" [disabled]="eventForm.invalid">Създай събитие</button>
+
+    <div id="response-label-success" *ngIf="successMessage">{{ successMessage }}</div>
+    <div id="response-label-error" style="color: red;" *ngIf="errorMessage">{{ errorMessage }}</div>
+  </form>
+</div>
