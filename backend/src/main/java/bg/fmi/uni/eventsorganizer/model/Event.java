@@ -22,6 +22,8 @@ public class Event {
     private String description;
     private String category;
     private String location;
+    private String imageUrl; //a newly-added element because of event rendering
+    private Integer likes; //same here :(
 
     @Column(name = "start_date")
     private LocalDateTime startDate;

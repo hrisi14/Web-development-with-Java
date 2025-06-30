@@ -8,4 +8,6 @@ export interface Event {
   startDate: string;
   endDate: string;
   rules: string;
+  likes: number;
+  imageUrl: string;
 }

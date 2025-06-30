@@ -1,0 +1,37 @@
+<div class="review-container">
+  <div class="event-image">
+    <img [src]="event.imageUrl" [alt]="event.title" />
+  </div>
+
+  <div class="event-details">
+    <h2 id="event-title" class="event-title">{{ event.title }}</h2>
+
+    <div class="likes">
+      <span>{{ event.likes }}</span> Likes
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn like" (click)="like()">Харесай</button>
+      <button class="btn follow" (click)="follow()">Последвай</button>
+      <button class="btn attend" (click)="attend()">Посети</button>
+      <button class="btn invite" (click)="invite()">Покани</button>
+    </div>
+
+    <p class="event-description">{{ event.description }}</p>
+
+    <div class="event-info">
+      <p><strong>Категория:</strong> {{ event.category }}</p>
+      <p><strong>Местоположение:</strong> {{ event.location }}</p>
+      <p><strong>Начална дата:</strong> {{ event.startDate }}</p>
+      <p><strong>Крайна дата:</strong> {{ event.endDate }}</p>
+      <p><strong>Правила:</strong> {{ event.rules }}</p>
+    </div>
+
+
+
+    <div class="message-box">
+      <input id="message-sender" type="text" #messageInput placeholder="Изпрати съобщение до организатор..." />
+      <button class="btn send" (click)="sendMessage(messageInput.value)">Изпрати</button>
+    </div>
+  </div>
+</div>
