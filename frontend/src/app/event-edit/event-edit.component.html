@@ -1,0 +1,38 @@
+<div class="edit-container">
+  <div class="event-image">
+    <img [src]="event.imageUrl" [alt]="event.title" />
+  </div>
+
+  <div class="event-details">
+    <input [(ngModel)]="event.title" class="event-title-input" placeholder="Заглавие" />
+
+    <div class="likes">
+      <span>{{ event.likes }}</span> Likes
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn save" (click)="saveChanges()">Запази</button>
+      <button class="btn delete" (click)="deleteEvent()">Изтрий</button>
+    </div>
+
+    <textarea [(ngModel)]="event.description" class="event-description" rows="3" placeholder="Описание"></textarea>
+
+    <div class="event-info">
+      <label class="editable-field-label"><strong>Категория:</strong>
+        <input [(ngModel)]="event.category" />
+      </label>
+      <label class="editable-field-label"><strong>Местоположение:</strong>
+        <input [(ngModel)]="event.location" />
+      </label>
+      <label class="editable-field-label"><strong>Начална дата:</strong>
+        <input [(ngModel)]="event.startDate" type="date" />
+      </label>
+      <label class="editable-field-label"><strong>Крайна дата:</strong>
+        <input [(ngModel)]="event.endDate" type="date" />
+      </label>
+      <label class="editable-field-label"><strong>Правила:</strong>
+        <textarea [(ngModel)]="event.rules" rows="2"></textarea>
+      </label>
+    </div>
+  </div>
+</div>
