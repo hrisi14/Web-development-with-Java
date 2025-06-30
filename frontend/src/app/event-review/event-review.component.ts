@@ -3,6 +3,8 @@ import { Event } from '../model/event.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { InvitationService } from '../services/invitation.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 selector: 'app-event-review',
@@ -25,9 +27,19 @@ imageUrl: 'assets/event.jpg',
 likes: 124
 };
 
-constructor() {}  //Do I need a router here?
+constructor(
+  private route: ActivatedRoute,
+  private invitationService: InvitationService
+) {}
 
-  ngOnInit(): void {}
+ ngOnInit(): void {
+  const id = this.route.snapshot.paramMap.get('id');
+  if (id) {
+    this.event.id = +id;
+    // Optionally: fetch the event from the server
+    // this.eventService.getEventById(+id).subscribe(event => this.event = event);
+  }
+}
 
   like() {
  }
@@ -40,9 +52,33 @@ constructor() {}  //Do I need a router here?
     console.log('Attend clicked');
   }
 
-  invite() {
-    console.log('Invite clicked');
+  invite(): void {
+  const userData = localStorage.getItem('currentUserId');
+  const senderId = userData ? JSON.parse(userData).id : null;
+
+ const input = prompt("Enter friend’s user ID to invite:");
+  if (!input) {
+    alert("Invitation canceled.");
+    return;
   }
+  const receiverId = parseInt(input, 10);
+  if (isNaN(receiverId)) {
+    alert("Invalid user ID.");
+    return;
+  }
+
+  const eventId = this.event?.id;
+  if (!senderId || eventId === undefined) {
+    alert("Missing sender or event info.");
+    return;
+  }
+
+  this.invitationService.sendInvitation({ senderId, receiverId, eventId })
+    .subscribe({
+      next: () => alert("Invitation sent!"),
+      error: err => alert("Failed to send invitation: " + err.message)
+    });
+}
 
   sendMessage(message: string) {
     console.log('Message sent:', message);

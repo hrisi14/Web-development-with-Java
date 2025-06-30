@@ -14,13 +14,21 @@ public class Invitation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "event_id", nullable = false)
-    private Integer eventId;
+    @ManyToOne
+    private Event event;
 
     @Column(nullable = false)
     private String status;
 
-    @Column(name = "send_at", nullable = false)
-    private LocalDateTime sendAt;
+    @ManyToOne
+    @JoinColumn(name = "receiver_id") // optional: defines the column name
+    private User receiver;
+
+    @ManyToOne
+    @JoinColumn(name = "sender_id")
+    private User sender;
+
+    private LocalDateTime sentAt = LocalDateTime.now();
+
 
 }

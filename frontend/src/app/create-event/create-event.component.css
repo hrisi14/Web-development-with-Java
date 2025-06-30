@@ -14,11 +14,13 @@
 #create-event-form {
     background-color: #E6EFE6;
     width: 30%;
+    height: 90%;
     margin: 0 auto;
-    padding: 30px 15px;
+    padding: 1% 1%;
     border-radius: 5px;
     box-sizing: border-box;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow-y: scroll;
 }
 
 #create-event-form h2 {
@@ -57,9 +59,9 @@
 
 .create-event-btn {
     display: block;
-    width: 34%;
+    width: 44%;
     margin: 3rem auto 0;
-    padding: 12px 0;
+    padding: 4% 0;
     background-color: #79B791;
     color: #F9F6EE;
     font-size: 16px;
@@ -70,7 +72,7 @@
     transition: background-color 0.3s ease;
 }
 
-#create-event-btn:hover {
+.create-event-btn:hover {
     background-color: #4f7a4f;
 }
 

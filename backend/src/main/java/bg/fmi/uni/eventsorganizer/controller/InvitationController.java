@@ -52,4 +52,10 @@ public class InvitationController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping("/send")
+    public ResponseEntity<InvitationDto> sendInvitation(@RequestBody InvitationDto dto) {
+        InvitationDto sent = invitationService.sendInvitation(dto.senderId(), dto.receiverId(), dto.eventId());
+        return ResponseEntity.ok(sent);
+    }
 }
