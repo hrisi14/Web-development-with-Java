@@ -58,4 +58,12 @@ public class EventController {
     public EventDto addEvent(@RequestBody EventDto eventDto) {
         return eventService.addEvent(eventDto);
     }
+
+    @PostMapping("/{eventId}/like")
+    public ResponseEntity<?> toggleLike(
+            @PathVariable Integer eventId,
+            @RequestParam Integer userId) {
+        boolean liked = eventService.toggleLike(eventId, userId);
+        return ResponseEntity.ok().body(liked ? "liked" : "unliked");
+    }
 }

@@ -28,18 +28,28 @@ export class EventReviewComponent implements OnInit {
       });
     }
   }
-    like() {
-   }
 
-    follow() {
-      console.log('Follow clicked');
-    }
+  like() {
+    const userId = 1; // TODO: Replace with actual logged-in user id
+    if (!this.event?.id) return;
+    this.eventService.toggleLike(this.event.id, userId).subscribe((res: any) => {
+      if (res === 'liked') {
+        this.event!.likes = (this.event!.likes ?? 0) + 1;
+      } else if (res === 'unliked') {
+        this.event!.likes = (this.event!.likes ?? 1) - 1;
+      }
+    });
+  }
 
-    attend() {
-      console.log('Attend clicked');
-    }
+  follow() {
+    console.log('Follow clicked');
+  }
 
-    invite() {
-      console.log('Invite clicked');
-    }
+  attend() {
+    console.log('Attend clicked');
+  }
+
+  invite() {
+    console.log('Invite clicked');
+  }
 }

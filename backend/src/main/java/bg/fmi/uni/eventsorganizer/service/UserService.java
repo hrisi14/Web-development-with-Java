@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import bg.fmi.uni.eventsorganizer.model.Event;
 
 @Service
 @RequiredArgsConstructor
@@ -73,12 +76,15 @@ public class UserService {
                 user.getFirstName(),
                 user.getLastName(),
                 user.getUsername(),
-                user.getRole()
+                user.getRole(),
+                user.getLikedEvents() != null
+                    ? user.getLikedEvents().stream().map(Event::getId).collect(Collectors.toSet())
+                    : Set.of()
         );
     }
 
     private User toEntity(UserDto userDto) {
-        return new User(
+        User user = new User(
                 userDto.id(),
                 userDto.email(),
                 userDto.password(),
@@ -87,5 +93,7 @@ public class UserService {
                 userDto.username(),
                 userDto.role()
         );
+        // likedEvents се сетва само при нужда, за да се избегнат излишни заявки
+        return user;
     }
 }

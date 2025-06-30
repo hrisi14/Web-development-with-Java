@@ -23,4 +23,8 @@ export class EventService {
   addEvent(event: Partial<Event>): Observable<Event> {
     return this.http.post<Event>(this.apiUrl, event);
   }
+
+  toggleLike(eventId: number, userId: number) {
+    return this.http.post(`${this.apiUrl}/${eventId}/like?userId=${userId}`, null, { responseType: 'text' });
+  }
 }

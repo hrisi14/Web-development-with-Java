@@ -2,9 +2,12 @@ package bg.fmi.uni.eventsorganizer.service;
 
 import bg.fmi.uni.eventsorganizer.dto.EventDto;
 import bg.fmi.uni.eventsorganizer.model.Event;
+import bg.fmi.uni.eventsorganizer.model.User;
 import bg.fmi.uni.eventsorganizer.repository.EventRepository;
+import bg.fmi.uni.eventsorganizer.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class EventService {
     private final EventRepository eventRepository;
+    private final UserRepository userRepository;
 
     public List<EventDto> getAllEvents() {
         return eventRepository.findAll().stream()
@@ -45,6 +49,25 @@ public class EventService {
             return true;
         }
         return false;
+    }
+
+    @Transactional
+    public boolean toggleLike(Integer eventId, Integer userId) {
+        Event event = eventRepository.findById(eventId).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
+        boolean liked;
+        if (user.getLikedEvents().contains(event)) {
+            user.getLikedEvents().remove(event);
+            event.setLikes(event.getLikes() != null ? event.getLikes() - 1 : 0);
+            liked = false;
+        } else {
+            user.getLikedEvents().add(event);
+            event.setLikes(event.getLikes() != null ? event.getLikes() + 1 : 1);
+            liked = true;
+        }
+        userRepository.save(user);
+        eventRepository.save(event);
+        return liked;
     }
 
     private EventDto toDto(Event event) {
