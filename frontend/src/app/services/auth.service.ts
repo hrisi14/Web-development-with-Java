@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserRegister } from '../model/user-register.model'
 import { UserLogin } from '../model/user-login.model'
+import { tap } from 'rxjs/operators';
 
 @Injectable({
 providedIn: 'root',
@@ -18,7 +19,15 @@ constructor(private http: HttpClient) {}
   }
 
   login(userLogin: UserLogin): Observable<any> {
-    console.log('auth.service.ts->Login Payload:', userLogin);
-    return this.http.post(`${this.apiUrl}/login`, userLogin);
-}
+    return this.http.post(`${this.apiUrl}/login`, userLogin).pipe(
+      tap((response: any) => {
+        localStorage.setItem('currentUserId', response.id);
+      })
+    );
+  }
+
+  getCurrentUserId(): number | null {
+    const id = localStorage.getItem('currentUserId');
+    return id ? Number(id) : null;
+  }
 }

@@ -8,6 +8,8 @@ public record EventDto(
         String description,
         String category,
         String location,
+        String imageUrl,
+        Integer likes,
         LocalDateTime startDate,
         LocalDateTime endDate,
         String rules,

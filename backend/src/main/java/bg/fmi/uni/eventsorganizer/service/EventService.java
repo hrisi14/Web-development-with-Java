@@ -54,6 +54,8 @@ public class EventService {
                 event.getDescription(),
                 event.getCategory(),
                 event.getLocation(),
+                event.getImageUrl(),
+                event.getLikes(),
                 event.getStartDate(),
                 event.getEndDate(),
                 event.getRules(),
@@ -63,17 +65,19 @@ public class EventService {
     }
 
     private Event toEntity(EventDto eventDto) {
-        return new Event(
-                eventDto.id(),
-                eventDto.title(),
-                eventDto.description(),
-                eventDto.category(),
-                eventDto.location(),
-                eventDto.startDate(),
-                eventDto.endDate(),
-                eventDto.rules(),
-                eventDto.organizerId(),
-                eventDto.sponsorId()
-        );
+        Event event = new Event();
+        event.setId(eventDto.id());
+        event.setTitle(eventDto.title());
+        event.setDescription(eventDto.description());
+        event.setCategory(eventDto.category());
+        event.setLocation(eventDto.location());
+        event.setImageUrl(eventDto.imageUrl());
+        event.setLikes(eventDto.likes());
+        event.setStartDate(eventDto.startDate());
+        event.setEndDate(eventDto.endDate());
+        event.setRules(eventDto.rules());
+        event.setOrganizerId(eventDto.organizerId());
+        event.setSponsorId(eventDto.sponsorId());
+        return event;
     }
 }
