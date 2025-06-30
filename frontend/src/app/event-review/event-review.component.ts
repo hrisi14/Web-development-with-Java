@@ -1,19 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Event } from '../model/event.model';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InvitationService } from '../services/invitation.service';
 import { ActivatedRoute } from '@angular/router';
 
+import { EventService } from '../services/event.service';
+import { Event } from '../model/event.model';
+
+
 @Component({
-selector: 'app-event-review',
-standalone: true,
-imports: [CommonModule, FormsModule],
-templateUrl: './event-review.component.html',
-styleUrls: ['./event-review.component.css']
+  selector: 'app-event-review',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './event-review.component.html',
+  styleUrls: ['./event-review.component.css']
 })
 export class EventReviewComponent implements OnInit {
+
 event: Event = {
 id: 1,
 title: 'Open-Air Music Festival',
@@ -29,28 +35,35 @@ likes: 124
 
 constructor(
   private route: ActivatedRoute,
-  private invitationService: InvitationService
+  private invitationService: InvitationService,
+  private eventService: EventService
 ) {}
 
- ngOnInit(): void {
-  const id = this.route.snapshot.paramMap.get('id');
-  if (id) {
-    this.event.id = +id;
-    // Optionally: fetch the event from the server
-    // this.eventService.getEventById(+id).subscribe(event => this.event = event);
-  }
-}
 
-  like() {
- }
 
   follow() {
     console.log('Follow clicked');
-  }
 
-  attend() {
-    console.log('Attend clicked');
+  event?: Event;
+
+ 
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    if (id) {
+      this.eventService.getEvent(id).subscribe((event: Event) => {
+        console.log('Получено събитие:', event);
+        this.event = event;
+      });
+    }
+
   }
+    like() {
+   }
+
+    follow() {
+      console.log('Follow clicked');
+    }
+
 
   invite(): void {
   const userData = localStorage.getItem('currentUserId');
@@ -83,4 +96,10 @@ constructor(
   sendMessage(message: string) {
     console.log('Message sent:', message);
   }
+
+    attend() {
+      console.log('Attend clicked');
+    }
+
+
 }

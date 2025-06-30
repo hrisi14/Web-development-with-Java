@@ -14,7 +14,7 @@ export const routes: Routes = [
 { path: 'login', component: LoginComponent },
 { path: 'events-catalogue', component: EventsCatalogueComponent },
 { path: 'create-event', component: CreateEventComponent },
-{ path: 'review-event', component: EventReviewComponent },
+{ path: 'review-event/:id', component: EventReviewComponent },
 { path: 'edit-event', component: EventEditComponent },
 { path: 'review-event/:id', component: EventReviewComponent },
 ];

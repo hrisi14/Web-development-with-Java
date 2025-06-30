@@ -2,6 +2,7 @@ package bg.fmi.uni.eventsorganizer.controller;
 
 import bg.fmi.uni.eventsorganizer.dto.EventDto;
 import bg.fmi.uni.eventsorganizer.service.EventService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -35,6 +36,17 @@ public class EventController {
         );
         boolean isUpdated = eventService.updateEvent(eventId, eventDto);
         return isUpdated ? "Event updated successfully." : "Event update failed.";
+    }
+
+    @GetMapping("/{eventId}")
+    public ResponseEntity<EventDto> getEventById(@PathVariable Integer eventId) {
+        return eventService.getEventById(eventId)
+                .map(eventDto -> {
+                    return ResponseEntity.ok(eventDto);
+                })
+                .orElseGet(() -> {
+                    return ResponseEntity.notFound().build();
+                });
     }
 
     @GetMapping
