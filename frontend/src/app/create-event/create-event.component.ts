@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { EventService } from '../../event/service/event.service';
+import { EventService } from '../services/event.service';
 import { HttpClientModule } from '@angular/common/http';
 import { OnInit } from '@angular/core';
+import { Event } from '../model/event.model';
 
 @Component({
   selector: 'app-create-event',
@@ -14,7 +15,8 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
-  event = {
+  event: Event = {
+    id: 0,
     title: '',
     description: '',
     category: '',
@@ -22,8 +24,10 @@ export class CreateEventComponent implements OnInit {
     startDate: '',
     endDate: '',
     rules: '',
-    organizerId: null,
-    sponsorId: null
+    likes: 0,
+    imageUrl: 'http//example.com/default-image.jpg',
+    organizerId: 1,
+    sponsorId: 1
   };
 
   successMessage = '';
@@ -34,7 +38,7 @@ export class CreateEventComponent implements OnInit {
     private router: Router
   ) {}
 
-ngOnInit() {
+  ngOnInit() {
     console.log('CreateEventComponent зареден');
   }
 
@@ -44,12 +48,19 @@ ngOnInit() {
       this.errorMessage = 'Моля, попълнете всички задължителни полета.';
       return;
     }
+    if (new Date(this.event.startDate) >= new Date(this.event.endDate)) {
+      this.errorMessage = 'Началната дата трябва да е преди крайната дата.';
+      return;
+    }
+    const eventToSend = { ...this.event };
+    delete (eventToSend as any).id;
 
-    this.eventService.addEvent(this.event).subscribe({
+    this.eventService.addEvent(eventToSend).subscribe({
       next: () => {
         this.successMessage = 'Събитието беше създадено успешно!';
         this.errorMessage = '';
         this.event = {
+          id: 0,
           title: '',
           description: '',
           category: '',
@@ -57,8 +68,10 @@ ngOnInit() {
           startDate: '',
           endDate: '',
           rules: '',
-          organizerId: null,
-          sponsorId: null
+          likes: 0,
+          imageUrl: 'https://example.com/default-image.jpg',
+          organizerId: 1,
+          sponsorId: 1
         };
         setTimeout(() => {
           this.router.navigate(['/events-catalogue']);

@@ -1,4 +1,3 @@
-// src/app/models/event.model.ts
 export interface Event {
   id?: number;
   title: string;
@@ -8,4 +7,8 @@ export interface Event {
   startDate: string;
   endDate: string;
   rules: string;
+  likes?: number;
+  imageUrl?: string;
+  organizerId?: number | null;
+  sponsorId?: number | null;
 }

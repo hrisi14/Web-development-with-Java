@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Event } from '../../event/model/event.model';
+import { Event } from '../model/event.model';
 
 @Component({
   selector: 'app-event-container',

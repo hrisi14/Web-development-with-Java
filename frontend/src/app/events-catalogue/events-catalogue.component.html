@@ -1,6 +1,8 @@
 <section id="events-catalogue-wrapper">
   <h2>Каталог на събитията</h2>
   <div class="events-list">
-    <app-event-container *ngFor="let event of events" [event]="event"></app-event-container>
+    <div *ngFor="let event of events">
+      <app-event-container [event]="event"></app-event-container>
+    </div>
   </div>
 </section>

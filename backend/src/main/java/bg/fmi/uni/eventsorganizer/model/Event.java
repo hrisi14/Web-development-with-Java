@@ -36,16 +36,20 @@ public class Event {
     @Column(name = "organizer_id")
     private Integer organizerId;
 
+
     @Column(name = "sponsor_id")
     private Integer sponsorId;
 
     public Event(Integer id, String title, String description, String category, String location,
+                 String imageUrl, Integer likes,
                  LocalDateTime startDate, LocalDateTime endDate, String rules, Integer organizerId, Integer sponsorId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.category = category;
         this.location = location;
+        this.imageUrl = imageUrl;
+        this.likes = likes;
         this.startDate = startDate;
         this.endDate = endDate;
         this.rules = rules;

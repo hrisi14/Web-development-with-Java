@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Event } from '../../app/model/event.model'; // коригиран import
+import { Event } from '../model/event.model';
 
 @Injectable({
   providedIn: 'root'
