@@ -52,7 +52,6 @@ export class CreateEventComponent implements OnInit {
       return;
     }
 
-    // Преобразуване на датите към ISO string, ако backend-ът очаква LocalDateTime
     const eventToSend = {
       ...this.event,
       startDate: new Date(this.event.startDate).toISOString(),
