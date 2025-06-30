@@ -3,7 +3,7 @@
     display: block;
     width: 100vw;
     height: 100vh;
-    background-color: #79B791;
+    background-color: #A6D8BE;
     font-family: "Roboto", "Arial", sans-serif;
     color: #333;
     padding-top: 3%;
@@ -55,7 +55,7 @@
     outline: none;
 }
 
-#create-event-btn {
+.create-event-btn {
     display: block;
     width: 34%;
     margin: 3rem auto 0;

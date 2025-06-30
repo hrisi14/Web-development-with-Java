@@ -1,0 +1,47 @@
+#home-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background-color: #A6D8BE;
+  font-family: "Roboto", "Arial", sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#home-content {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#home-content h1 {
+  font-size: 2em;
+  margin-bottom: 1rem;
+}
+
+#home-content p {
+  font-size: 1.2em;
+}
+
+#home-actions {
+  display: flex;
+  gap: 20px;
+}
+
+#login-btn, #register-btn {
+  box-sizing: border-box;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 40px;
+  border: none;
+  background-color: #E6EFE6;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+#login-btn:hover, #register-btn:hover {
+  background-color: #d1dfd1;
+  cursor: pointer;
+}

@@ -39,4 +39,9 @@ public class EventController {
     public List<EventDto> getAllEvents() {
         return eventService.getAllEvents();
     }
+
+    @PostMapping
+    public EventDto addEvent(@RequestBody EventDto eventDto) {
+        return eventService.addEvent(eventDto);
+    }
 }

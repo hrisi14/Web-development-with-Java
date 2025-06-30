@@ -1,6 +1,6 @@
 // src/app/models/event.model.ts
 export interface Event {
-  id: number;
+  id?: number;
   title: string;
   description: string;
   category: string;
