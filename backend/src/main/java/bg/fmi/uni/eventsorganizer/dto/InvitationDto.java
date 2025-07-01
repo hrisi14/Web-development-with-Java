@@ -5,7 +5,8 @@ import java.time.LocalDateTime;
 public record InvitationDto(
         Integer id,
         Integer eventId,
-        Integer senderId,
+        String eventName,
+        String senderName,
         String receiverName,
         LocalDateTime sentAt
 ) {}

@@ -36,7 +36,6 @@ login(userLogin: UserLogin): Observable<any> {
 getCurrentUserId(): number | null {
   if (typeof window === 'undefined') return null;
   const id = localStorage.getItem('userId');
-  console.log('getCurrentUserId from localStorage:', id);
   return id ? Number(id) : null;
 }
 }

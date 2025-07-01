@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Invitation } from '../model/invitation.model';
 
 @Injectable({
 providedIn: 'root',
@@ -16,8 +17,10 @@ constructor(private http: HttpClient) {}
     return this.http.post(`${this.apiUrl}/send`, invitationData);
   }
 
-  // Optional: Get invitations sent/received
-  getInvitationsByUser(userId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/user/${userId}`);
-  }
+   getInvitationsForUser(userId: number): Observable<Invitation[]> {
+       console.log(`${userId}`);
+        return this.http.get<Invitation[]>(`${this.apiUrl}/user/${userId}`);
+
+}
+
 }
