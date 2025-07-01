@@ -22,11 +22,15 @@ public class InvitationService {
     private final EventRepository eventRepository;
 
     //newly added
-    public InvitationDto sendInvitation(Integer senderId, Integer receiverId, Integer eventId) {
+    public InvitationDto sendInvitation(Integer senderId, String receiverName, Integer eventId) {
         User sender = userRepository.findById(senderId)
                 .orElseThrow(() -> new RuntimeException("Sender not found with id: " + senderId));
-        User receiver = userRepository.findById(receiverId)
-                .orElseThrow(() -> new RuntimeException("Receiver not found with id: " + receiverId));
+
+        Optional<User> optReceiver = userRepository.findByUsername(receiverName);
+        User receiver = null;
+        if (optReceiver.isPresent()) {
+            receiver = optReceiver.get();
+        }
 
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new RuntimeException("Event not found with id: " + eventId));
@@ -80,7 +84,7 @@ public class InvitationService {
                 invitation.getId(),
                 invitation.getEvent().getId(),
                 invitation.getSender().getId(),
-                invitation.getReceiver().getId(),
+                invitation.getReceiver().getUsername(),
                 invitation.getSentAt()
         );
     }
@@ -88,7 +92,7 @@ public class InvitationService {
     public Invitation toEntity(InvitationDto dto) {
         User sender = userRepository.findById(dto.senderId())
                 .orElseThrow(() -> new RuntimeException("Sender not found!"));
-        User receiver = userRepository.findById(dto.receiverId())
+        User receiver = userRepository.findByUsername(dto.receiverName())
                 .orElseThrow(() -> new RuntimeException("Receiver not found!"));
         Event event = eventRepository.findById(dto.eventId())
                 .orElseThrow(() -> new RuntimeException("Event not found!"));
