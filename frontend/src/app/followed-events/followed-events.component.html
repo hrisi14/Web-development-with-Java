@@ -1,0 +1,11 @@
+<section id="followed-events-wrapper">
+  <h2>Последвани събития</h2>
+  <div class="events-list">
+    <div *ngFor="let event of events">
+      <app-event-container [event]="event"></app-event-container>
+    </div>
+    <div *ngIf="events.length === 0">
+      <p>Нямате последвани събития.</p>
+    </div>
+  </div>
+</section>

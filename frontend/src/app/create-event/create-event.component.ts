@@ -6,6 +6,7 @@ import { EventService } from '../services/event.service';
 import { HttpClientModule } from '@angular/common/http';
 import { OnInit } from '@angular/core';
 import { Event } from '../model/event.model';
+import { AuthService } from '../services/auth.service';
 
 import { NavbarComponent } from '../navbar/navbar.component';
 
@@ -36,7 +37,8 @@ export class CreateEventComponent implements OnInit {
 
   constructor(
     private eventService: EventService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -54,12 +56,19 @@ export class CreateEventComponent implements OnInit {
       return;
     }
 
+    const organizerId = this.authService.getCurrentUserId();
+    if (!organizerId) {
+      this.errorMessage = 'Трябва да сте влезли в профила си, за да създадете събитие.';
+      return;
+    }
+
     const eventToSend = {
       ...this.event,
       startDate: new Date(this.event.startDate).toISOString(),
       endDate: new Date(this.event.endDate).toISOString(),
       likes: this.event.likes ?? 0,
-      imageUrl: this.event.imageUrl ?? ''
+      imageUrl: this.event.imageUrl ?? '',
+      organizerId
     };
 
     this.eventService.addEvent(eventToSend).subscribe({

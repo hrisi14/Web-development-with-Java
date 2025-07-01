@@ -3,6 +3,7 @@ package bg.fmi.uni.eventsorganizer.controller;
 import bg.fmi.uni.eventsorganizer.dto.UserDto;
 import bg.fmi.uni.eventsorganizer.dto.UserSessionDto;
 import bg.fmi.uni.eventsorganizer.service.UserService;
+import bg.fmi.uni.eventsorganizer.model.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -28,7 +31,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PostMapping("/register")   //newly added
+    @PostMapping("/register")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto dto) {
         System.out.println("Incoming dto: " + dto);
         UserDto created = userService.addUser(dto);
@@ -54,7 +57,35 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("Invalid credentials", null));
     }
 
+    @GetMapping("/{id}/liked-events")
+    public ResponseEntity<Set<Event>> getLikedEvents(@PathVariable Integer id) {
+        return userService.getUserById(id)
+                .map(userDto -> {
+                    Set<Event> liked = userService.getLikedEvents(id);
+                    return ResponseEntity.ok(liked);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 
+    @GetMapping("/{id}/followed-events")
+    public ResponseEntity<Set<Event>> getFollowedEvents(@PathVariable Integer id) {
+        return userService.getUserById(id)
+                .map(userDto -> {
+                    Set<Event> followed = userService.getFollowedEvents(id);
+                    return ResponseEntity.ok(followed);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{id}/visited-events")
+    public ResponseEntity<Set<Event>> getVisitedEvents(@PathVariable Integer id) {
+        return userService.getUserById(id)
+                .map(userDto -> {
+                    Set<Event> visited = userService.getVisitedEvents(id);
+                    return ResponseEntity.ok(visited);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable Integer id, @RequestBody UserDto dto) {

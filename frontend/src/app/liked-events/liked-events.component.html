@@ -1,0 +1,11 @@
+<section id="liked-events-wrapper">
+  <h2>Харесани събития</h2>
+  <div class="events-list">
+    <div *ngFor="let event of events">
+      <app-event-container [event]="event"></app-event-container>
+    </div>
+    <div *ngIf="events.length === 0">
+      <p>Нямате харесани събития.</p>
+    </div>
+  </div>
+</section>

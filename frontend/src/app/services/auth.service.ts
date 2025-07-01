@@ -18,17 +18,25 @@ constructor(private http: HttpClient) {}
     return this.http.post(`${this.apiUrl}/register`, userRegister);
   }
 
-  login(userLogin: UserLogin): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, userLogin).pipe(
-      tap((response: any) => {
-         console.log("Response" + response.userId);
-         localStorage.setItem('currentUserId', response.userId.toString());
-      })
-    );
-  }
+login(userLogin: UserLogin): Observable<any> {
+  return this.http.post(`${this.apiUrl}/login`, userLogin).pipe(
+    tap((response: any) => {
+      console.log('Login response:', response);
+      const id = response?.id ?? response?.userId;
+      if (id) {
+        localStorage.setItem('userId', id.toString());
+        console.log('userId set in localStorage:', id);
+      } else {
+        console.error('Login response missing id field:', response);
+      }
+    })
+  );
+}
 
-  getCurrentUserId(): number | null {
-    const id = localStorage.getItem('currentUserId');
-    return id ? Number(id) : null;
-  }
+getCurrentUserId(): number | null {
+  if (typeof window === 'undefined') return null;
+  const id = localStorage.getItem('userId');
+  console.log('getCurrentUserId from localStorage:', id);
+  return id ? Number(id) : null;
+}
 }

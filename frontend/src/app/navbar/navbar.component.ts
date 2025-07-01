@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -10,11 +12,21 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-constructor(private router: Router) {}
 
+
+export class NavbarComponent {
+  showDropdown = false;
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  get userId(): number | null {
+    const id = this.authService.getCurrentUserId();
+    console.log('Navbar userId:', id);
+    return id;
+  }
+  
   logout(): void {
-  localStorage.removeItem('currentUserId');
+  localStorage.removeItem('userId');
   this.router.navigate(['/home']);
 }
 

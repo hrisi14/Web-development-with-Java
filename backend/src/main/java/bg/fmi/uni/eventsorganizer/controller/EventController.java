@@ -26,13 +26,15 @@ public class EventController {
                               @RequestParam String location,
                               @RequestParam String imageUrl,
                               @RequestParam Integer likes,
+                              @RequestParam Integer followers,
+                              @RequestParam Integer visitors,
                               @RequestParam LocalDateTime startDate,
                               @RequestParam LocalDateTime endDate,
                               @RequestParam String rules,
                               @RequestParam Integer organizerId,
                               @RequestParam Integer sponsorId) {
         EventDto eventDto = new EventDto(
-                eventId, title, description, category, location, imageUrl, likes, startDate, endDate, rules, organizerId, sponsorId
+                eventId, title, description, category, location, imageUrl, likes, followers, visitors, startDate, endDate, rules, organizerId, sponsorId
         );
         boolean isUpdated = eventService.updateEvent(eventId, eventDto);
         return isUpdated ? "Event updated successfully." : "Event update failed.";
@@ -57,5 +59,29 @@ public class EventController {
     @PostMapping
     public EventDto addEvent(@RequestBody EventDto eventDto) {
         return eventService.addEvent(eventDto);
+    }
+
+    @PostMapping("/{eventId}/like")
+    public ResponseEntity<?> toggleLike(
+            @PathVariable Integer eventId,
+            @RequestParam Integer userId) {
+        boolean liked = eventService.toggleLike(eventId, userId);
+        return ResponseEntity.ok().body(liked ? "liked" : "unliked");
+    }
+
+    @PostMapping("/{eventId}/follow")
+    public ResponseEntity<?> toggleFollow(
+            @PathVariable Integer eventId,
+            @RequestParam Integer userId) {
+        boolean followed = eventService.toggleFollow(eventId, userId);
+        return ResponseEntity.ok().body(followed ? "followed" : "unfollowed");
+    }
+
+    @PostMapping("/{eventId}/visit")
+    public ResponseEntity<?> toggleVisit(
+            @PathVariable Integer eventId,
+            @RequestParam Integer userId) {
+        boolean visited = eventService.toggleVisit(eventId, userId);
+        return ResponseEntity.ok().body(visited ? "visited" : "unvisited");
     }
 }

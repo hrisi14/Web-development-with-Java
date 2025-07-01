@@ -1,8 +1,8 @@
 package bg.fmi.uni.eventsorganizer.dto;
 
-
 import lombok.Builder;
 import lombok.Data;
+import java.util.Set;
 
 public record UserDto(
         Integer id,
@@ -11,5 +11,8 @@ public record UserDto(
         String firstName,
         String lastName,
         String username,
-        String role
+        String role,
+        Set<Integer> likedEventIds,
+        Set<Integer> followedEventIds,
+        Set<Integer> visitedEventIds
 ) {}
