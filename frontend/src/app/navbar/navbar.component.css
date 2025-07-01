@@ -29,3 +29,42 @@
   background-color: #E6EFE6;
   color: #333;
 }
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: block;
+  position: absolute;
+  top: 2.5em;
+  left: 0;
+  background-color: #E6EFE6;
+  min-width: 180px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(51, 51, 51, 0.15);
+  z-index: 100;
+  padding: 0.5em 0;
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.7em 1.2em;
+  color: #333;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1em;
+  border-radius: 0;
+  font-weight: normal;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a.active {
+  background-color: #79B791;
+  color: #fff;
+}

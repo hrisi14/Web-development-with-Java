@@ -6,14 +6,22 @@
   <div class="event-details">
     <h2 id="event-title" class="event-title">{{ event?.title }}</h2>
 
-    <div class="likes">
-      <span>{{ event?.likes }}</span> Likes
+    <div class="event-stats-row">
+      <div class="likes">
+        <span>{{ event?.likes }}</span> Харесвания
+      </div>
+      <div class="followers">
+        <span>{{ event?.followers }}</span> Последователи
+      </div>
+      <div class="visitors">
+        <span>{{ event?.visitors }}</span> Посетители
+      </div>
     </div>
 
     <div class="action-buttons">
       <button class="btn like" (click)="like()">Харесай</button>
       <button class="btn follow" (click)="follow()">Последвай</button>
-      <button class="btn attend" (click)="attend()">Посети</button>
+      <button class="btn attend" (click)="visit()">Посети</button>
       <button class="btn invite" (click)="invite()">Покани</button>
 
       <div *ngIf="showInviteForm" class="invite-box">

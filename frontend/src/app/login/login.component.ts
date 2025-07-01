@@ -27,8 +27,10 @@ constructor(private authService: AuthService, private router: Router) {}
   onSubmit() {
     console.log('Login Payload:', this.userLogin);
     this.authService.login(this.userLogin).subscribe({
-
-      next: () =>  this.router.navigate(['/events-catalogue']),
+      next: (response) => {
+        alert('Login successful!');
+        this.router.navigate(['/events-catalogue']); 
+      },
 
       error: (err) => alert('Login failed: ' + err.error.message),
     });

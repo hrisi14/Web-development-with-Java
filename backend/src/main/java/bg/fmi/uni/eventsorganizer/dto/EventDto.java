@@ -10,6 +10,8 @@ public record EventDto(
         String location,
         String imageUrl,
         Integer likes,
+        Integer followers,
+        Integer visitors,
         LocalDateTime startDate,
         LocalDateTime endDate,
         String rules,

@@ -1,0 +1,9 @@
+<div id="my-events-wrapper">
+  <h2>Моите събития</h2>
+  <div class="my-events-buttons">
+    <a class="my-events-btn" [routerLink]="['/user', userId, 'visited-events']" routerLinkActive="active">Посетени</a>
+    <a class="my-events-btn" [routerLink]="['/user', userId, 'followed-events']" routerLinkActive="active">Последвани</a>
+    <a class="my-events-btn" [routerLink]="['/user', userId, 'liked-events']" routerLinkActive="active">Харесани</a>
+    <a class="my-events-btn" routerLink="/organized-events" routerLinkActive="active">Организирани</a>
+  </div>
+</div>

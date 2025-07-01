@@ -1,0 +1,56 @@
+#my-events-wrapper {
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", "Arial", sans-serif;
+    color: #333;
+    background-color: #A6D8BE;
+    overflow-x: hidden;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: 2em;
+    font-family: "Roboto", "Arial", sans-serif;
+}
+
+.my-events-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 40px;
+}
+
+.my-events-btn {
+    display: inline-block;
+    min-width: 140px;
+    padding: 18px 32px;
+    font-size: 1.1em;
+    font-family: "Roboto", "Arial", sans-serif;
+    font-weight: bold;
+    color: #F9F6EE;
+    background-color: #79B791;
+    border: none;
+    border-radius: 40px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(51, 51, 51, 0.10);
+}
+
+.my-events-btn:hover:not(:disabled) {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.my-events-btn:disabled {
+    background-color: #E6EFE6;
+    color: #aaa;
+    cursor: not-allowed;
+    border: 1px solid #ccc;
+}
