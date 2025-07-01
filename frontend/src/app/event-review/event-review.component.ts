@@ -86,7 +86,7 @@ submitInvitation(): void {
     return;
   }
 
-  const senderId = Number(localStorage.getItem('currentUserId'));
+  const senderId = Number(localStorage.getItem('userId'));
   if (!this.receiverName) {
     alert('Please enter a friend’s username.');
     return;
