@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
@@ -9,12 +9,13 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './my-events.component.html',
   styleUrls: ['./my-events.component.css']
 })
-export class MyEventsComponent {
+export class MyEventsComponent implements OnInit {
+  userId: number | null = null;
+
   constructor(private authService: AuthService) {}
 
-  get userId(): number | null {
-    const id = this.authService.getCurrentUserId();
-    console.log('MyEvents userId:', id);
-    return id;
+  ngOnInit() {
+    this.userId = this.authService.getCurrentUserId();
+    console.log('MyEvents userId:', this.userId);
   }
 }

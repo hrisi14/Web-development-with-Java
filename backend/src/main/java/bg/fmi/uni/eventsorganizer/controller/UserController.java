@@ -31,7 +31,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PostMapping("/register")   //newly added
+    @PostMapping("/register")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto dto) {
         System.out.println("Incoming dto: " + dto);
         UserDto created = userService.addUser(dto);
