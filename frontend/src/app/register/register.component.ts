@@ -31,7 +31,7 @@ constructor(private authService: AuthService, private router: Router) {}
   onSubmit() {
    console.log('User Register Payload:', this.userRegister);
     this.authService.register(this.userRegister).subscribe({
-      next: () => alert('Registration successful!'),
+      next: () => this.router.navigate(['/events-catalogue']),
       error: (err) => alert('Registration failed: ' + err.error.message),
     });
   }
