@@ -68,6 +68,12 @@ public class UserService {
         return false;
     }
 
+    public Set<Event> getLikedEvents(Integer userId) {
+        return userRepository.findById(userId)
+                .map(User::getLikedEvents)
+                .orElse(Set.of());
+    }
+
     private UserDto toDto(User user) {
         return new UserDto(
                 user.getId(),

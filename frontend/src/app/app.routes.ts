@@ -6,6 +6,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { EventReviewComponent } from './event-review/event-review.component';
 import {EventEditComponent } from './event-edit/event-edit.component';
 import { HomeComponent } from './home/home.component';
+import { LikedEventsComponent } from './liked-events/liked-events.component';
 
 export const routes: Routes = [
 { path: 'register', component: RegisterComponent },
@@ -16,4 +17,5 @@ export const routes: Routes = [
 { path: 'create-event', component: CreateEventComponent },
 { path: 'review-event/:id', component: EventReviewComponent },
 { path: 'edit-event', component: EventEditComponent },
+{ path: 'user/:id/liked-events', component: LikedEventsComponent },
 ];

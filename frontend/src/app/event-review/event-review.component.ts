@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EventService } from '../services/event.service';
 import { Event } from '../model/event.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-event-review',
@@ -16,7 +17,8 @@ export class EventReviewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private eventService: EventService
+    private eventService: EventService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -30,8 +32,8 @@ export class EventReviewComponent implements OnInit {
   }
 
   like() {
-    const userId = 1; // TODO: Replace with actual logged-in user id
-    if (!this.event?.id) return;
+    const userId = this.authService.getCurrentUserId();
+    if (!this.event?.id || !userId) return;
     this.eventService.toggleLike(this.event.id, userId).subscribe((res: any) => {
       if (res === 'liked') {
         this.event!.likes = (this.event!.likes ?? 0) + 1;
