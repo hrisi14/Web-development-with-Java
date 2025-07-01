@@ -18,7 +18,7 @@ export class EventContainerComponent {
   constructor(private router: Router) {}
 
   goToReview() {
-    const userId = Number(localStorage.getItem('currentUserId'));
+    const userId = Number(localStorage.getItem('userId'));
     console.log("User id");
     console.log(userId);
     if (userId < 1) {
