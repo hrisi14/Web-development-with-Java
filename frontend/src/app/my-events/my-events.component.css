@@ -7,6 +7,7 @@
     color: #333;
     background-color: #A6D8BE;
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 h2 {
