@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { UserLogin } from '../model/user-login.model'
 import { Router } from '@angular/router';
-
+import { SeparateNavBarComponent } from '../separate-nav-bar/separate-nav-bar.component';
 
 
 //To test submission and add data validation!
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SeparateNavBarComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -31,7 +31,7 @@ constructor(private authService: AuthService, private router: Router) {}
     this.authService.login(this.userLogin).subscribe({
       next: (response) => {
         alert('Login successful!');
-        this.router.navigate(['/events-catalogue']); 
+        this.router.navigate(['/events-catalogue']);
       },
 
       error: (err) => alert('Login failed: ' + err.error.message),

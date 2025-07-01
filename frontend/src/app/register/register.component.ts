@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { UserRegister } from '../model/user-register.model'
 import { Router } from '@angular/router';
-
+import { SeparateNavBarComponent } from '../separate-nav-bar/separate-nav-bar.component';
 //TO DO: add submission and validation handling!!!
 
 
 @Component({
 selector: 'app-register',
 standalone: true,
-imports: [CommonModule, FormsModule],
+imports: [CommonModule, FormsModule, SeparateNavBarComponent],
 templateUrl: './register.component.html',
 styleUrls: ['./register.component.css']
 })
