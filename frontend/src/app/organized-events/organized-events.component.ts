@@ -30,4 +30,13 @@ export class OrganizedEventsComponent implements OnInit {
       });
     }
   }
+
+   deleteEvent(eventId: number): void {
+    if (confirm('Сигурни ли сте, че искате да изтриете това събитие?')) {
+      this.eventService.deleteEvent(eventId).subscribe(() => {
+        this.events = this.events.filter(e => e.id !== eventId);
+      });
+    }
+  }
+
 }

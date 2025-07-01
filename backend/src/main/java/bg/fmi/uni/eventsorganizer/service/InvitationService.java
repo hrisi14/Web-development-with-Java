@@ -23,9 +23,9 @@ public class InvitationService {
     private final EventRepository eventRepository;
 
     //newly added
-    public InvitationDto sendInvitation(String senderUsername, String receiverName, String eventTitle) {
-        User sender = userRepository.findByUsername(senderUsername)
-                .orElseThrow(() -> new RuntimeException("Sender not found with username: " + senderUsername));
+    public InvitationDto sendInvitation(Integer senderId, String receiverName, Integer eventId) {
+        User sender = userRepository.findById(senderId)
+                .orElseThrow(() -> new RuntimeException("Sender not found with username: " + senderId));
 
         Optional<User> optReceiver = userRepository.findByUsername(receiverName);
         User receiver = null;
@@ -33,8 +33,8 @@ public class InvitationService {
             receiver = optReceiver.get();
         }
 
-        Event event = eventRepository.findByTitle(eventTitle)
-                .orElseThrow(() -> new RuntimeException("Event not found with title: " + eventTitle));
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new RuntimeException("Event not found with title: " + eventId));
 
         Invitation invitation = new Invitation();
         invitation.setSender(sender);
@@ -85,6 +85,7 @@ public class InvitationService {
                 invitation.getId(),
                 invitation.getEvent().getId(),
                 invitation.getEvent().getTitle(),
+                invitation.getSender().getId(),
                 invitation.getSender().getUsername(),
                 invitation.getReceiver().getUsername(),
                 invitation.getSentAt()
