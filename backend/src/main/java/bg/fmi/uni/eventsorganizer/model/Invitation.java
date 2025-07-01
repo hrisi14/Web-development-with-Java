@@ -28,7 +28,8 @@ public class Invitation {
     @JoinColumn(name = "sender_id")
     private User sender;
 
-    private LocalDateTime sentAt = LocalDateTime.now();
+    @Column(name = "sent_at")
+    private LocalDateTime sentAt; // = LocalDateTime.now();
 
 
 }

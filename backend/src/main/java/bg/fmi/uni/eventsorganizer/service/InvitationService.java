@@ -36,7 +36,7 @@ public class InvitationService {
         invitation.setReceiver(receiver);
         invitation.setEvent(event);
         invitation.setStatus("PENDING");
-
+        invitation.setSentAt(LocalDateTime.now());
         Invitation saved = invitationRepository.save(invitation);
         return toDto(saved);
     }
