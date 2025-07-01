@@ -6,6 +6,6 @@ public record InvitationDto(
         Integer id,
         Integer eventId,
         Integer senderId,
-        Integer receiverId,
+        String receiverName,
         LocalDateTime sentAt
 ) {}

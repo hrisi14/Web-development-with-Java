@@ -49,20 +49,13 @@ export class EventReviewComponent implements OnInit {
 
     const senderId = Number(localStorage.getItem('currentUserId'));
 
-
-    console.log("Sender");
-
     const input = prompt("Enter friend’s user ID to invite:");
     if (!input) return;
 
-    const receiverId = parseInt(input, 10);
-    if (isNaN(receiverId)) {
-      alert("Invalid user ID.");
-      return;
-    }
+    const receiverName = input;
     this.invitationService.sendInvitation({
       senderId,
-      receiverId,
+      receiverName,
       eventId: this.event.id
     }).subscribe({
       next: () => alert("Invitation sent!"),
