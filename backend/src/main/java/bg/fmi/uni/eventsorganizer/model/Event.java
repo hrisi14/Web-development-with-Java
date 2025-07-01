@@ -23,7 +23,11 @@ public class Event {
     private String description;
     private String category;
     private String location;
+
+    @Lob
+    @Column
     private String imageUrl; //a newly-added element because of event rendering
+
     private Integer likes;
     private Integer followers;
     private Integer visitors;

@@ -4,13 +4,13 @@ export interface Event {
   description: string;
   category: string;
   location: string;
+  imageUrl: string | null;
   startDate: string;
   endDate: string;
   rules: string;
   likes?: number;
   followers?: number;
   visitors?: number;
-  imageUrl?: string;
   organizerId?: number | null;
   sponsorId?: number | null;
 }

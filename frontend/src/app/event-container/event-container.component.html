@@ -1,4 +1,10 @@
 <div class="event-container" *ngIf="event">
+  <div *ngIf="!!event?.imageUrl"
+       class="event-image">
+    <img [src]="event.imageUrl"
+         alt="Снимка на събитието"
+         style="max-width: 100%; border-radius: 8px; margin-bottom: 12px;" />
+  </div>
   <h3 class="event-title">{{ event?.title }}</h3>
   <div class="event-details">
     <p class="event-description">{{ event?.description }}</p>

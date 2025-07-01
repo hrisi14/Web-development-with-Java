@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { EventService } from '../services/event.service';
 import { HttpClientModule } from '@angular/common/http';
 import { OnInit } from '@angular/core';
-import { Event } from '../model/event.model';
+import { Event as EventModel } from '../model/event.model';
 import { AuthService } from '../services/auth.service';
 
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -18,7 +18,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
-  event: Event = {
+  event: EventModel = {
     title: '',
     description: '',
     category: '',
@@ -27,7 +27,9 @@ export class CreateEventComponent implements OnInit {
     endDate: '',
     rules: '',
     likes: 0,
-    imageUrl: '',
+    followers: 0,
+    visitors: 0,
+    imageUrl: null,
     organizerId: null,
     sponsorId: null
   };
@@ -67,12 +69,18 @@ export class CreateEventComponent implements OnInit {
       startDate: new Date(this.event.startDate).toISOString(),
       endDate: new Date(this.event.endDate).toISOString(),
       likes: this.event.likes ?? 0,
-      imageUrl: this.event.imageUrl ?? '',
-      organizerId
+      followers: this.event.followers ?? 0,
+      visitors: this.event.visitors ?? 0,
+      imageUrl: this.event.imageUrl ?? null,
+      organizerId,
+      sponsorId: this.event.sponsorId ?? 0
     };
 
+    console.log('Изпращане на събитие към backend:', eventToSend);
+
     this.eventService.addEvent(eventToSend).subscribe({
-      next: () => {
+      next: (result) => {
+        console.log('Успешно създадено събитие:', result);
         this.successMessage = 'Събитието беше създадено успешно!';
         this.errorMessage = '';
         this.event = {
@@ -80,11 +88,13 @@ export class CreateEventComponent implements OnInit {
           description: '',
           category: '',
           location: '',
+          imageUrl: null,
           startDate: '',
           endDate: '',
           rules: '',
           likes: 0,
-          imageUrl: '',
+          followers: 0,
+          visitors: 0,
           organizerId: null,
           sponsorId: null
         };
@@ -92,11 +102,33 @@ export class CreateEventComponent implements OnInit {
           this.router.navigate(['/events-catalogue']);
         }, 2000);
       },
-      error: (err: unknown) => {
+      error: (err: any) => {
         console.error('Error creating event', err);
+        if (err && err.error) {
+          console.error('Backend error:', err.error);
+        }
         this.successMessage = '';
         this.errorMessage = 'Възникна грешка при създаване на събитието. Проверете дали всички полета са попълнени коректно.';
       }
     });
+  }
+
+  onImageSelected(event: any) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      console.log('Избран файл:', file);
+      const reader = new FileReader();
+      reader.onload = () => {
+        console.log('Base64 изображение:', reader.result);
+        this.event.imageUrl = reader.result as string;
+      };
+      reader.onerror = (e) => {
+        console.error('Грешка при четене на изображението:', e);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      console.warn('Не е избран файл за изображение');
+    }
   }
 }
