@@ -1,0 +1,31 @@
+.navbar {
+  background-color: #79B791;
+  padding: 1em;
+  font-family: "Roboto", "Arial", sans-serif;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: bold;
+  color: #F9F6EE;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 0.5em 1em;
+  border-radius: 20px;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  background-color: #E6EFE6;
+  color: #333;
+}

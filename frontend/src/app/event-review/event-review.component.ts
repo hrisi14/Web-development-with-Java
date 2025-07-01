@@ -7,10 +7,12 @@ import { AuthService } from '../services/auth.service';
 import { InvitationService } from '../services/invitation.service';
 import { FormsModule } from '@angular/forms';
 
+import { NavbarComponent } from '../navbar/navbar.component';
+
 @Component({
   selector: 'app-event-review',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NavbarComponent],
   templateUrl: './event-review.component.html',
   styleUrls: ['./event-review.component.css']
 })

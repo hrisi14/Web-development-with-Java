@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { NavbarComponent } from '../navbar/navbar.component';
+
 @Component({
 selector: 'app-event-edit',
 standalone: true,
-imports: [CommonModule, FormsModule],
+imports: [CommonModule, FormsModule, NavbarComponent],
 templateUrl: './event-edit.component.html',
 styleUrls: ['./event-edit.component.css']
 })

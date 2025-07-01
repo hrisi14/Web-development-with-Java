@@ -6,18 +6,19 @@ import { Event } from '../model/event.model';
 
 import { NavbarComponent } from '../navbar/navbar.component';
 import { Router } from '@angular/router';
+import { SeparateNavBarComponent } from '../separate-nav-bar/separate-nav-bar.component';
 
 @Component({
-  selector: 'app-events-catalogue',
-  standalone: true,
-  imports: [CommonModule, EventContainerComponent, NavbarComponent],
-  templateUrl: './events-catalogue.component.html',
-  styleUrls: ['./events-catalogue.component.css']
+selector: 'app-events-catalogue',
+standalone: true,
+imports: [CommonModule, EventContainerComponent, SeparateNavBarComponent],
+templateUrl: './separate-catalogue.component.html',
+styleUrls: ['./separate-catalogue.component.css']
 })
-export class EventsCatalogueComponent implements OnInit {
-  events: Event[] = [];
+export class SeparateCatalogueComponent implements OnInit {
+events: Event[] = [];
 
-  constructor(private eventService: EventService, private router: Router) {}
+constructor(private eventService: EventService, private router: Router) {}
 
   ngOnInit() {
     this.loadEvents();
