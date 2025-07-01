@@ -25,7 +25,7 @@ export class EventReviewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
-    private authService: AuthService
+    private authService: AuthService,
     private invitationService: InvitationService
 
   ) {}

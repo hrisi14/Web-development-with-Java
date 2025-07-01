@@ -5,11 +5,12 @@ import { EventContainerComponent } from '../event-container/event-container.comp
 import { Event } from '../model/event.model';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-visited-events',
   standalone: true,
-  imports: [CommonModule, EventContainerComponent],
+  imports: [CommonModule, EventContainerComponent, NavbarComponent],
   templateUrl: './visited-events.component.html',
   styleUrls: ['./visited-events.component.css']
 })

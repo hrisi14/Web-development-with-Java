@@ -4,11 +4,12 @@ import { Event } from '../model/event.model';
 import { EventService } from '../services/event.service';
 import { AuthService } from '../services/auth.service';
 import { EventContainerComponent } from '../event-container/event-container.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-organized-events',
   standalone: true,
-  imports: [CommonModule, EventContainerComponent],
+  imports: [CommonModule, EventContainerComponent, NavbarComponent],
   templateUrl: './organized-events.component.html',
   styleUrls: ['./organized-events.component.css']
 })
