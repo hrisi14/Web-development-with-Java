@@ -29,8 +29,9 @@ constructor(private authService: AuthService, private router: Router) {}
     this.authService.login(this.userLogin).subscribe({
       next: (response) => {
         alert('Login successful!');
-        this.router.navigate(['/home']); 
+        this.router.navigate(['/events-catalogue']); 
       },
+
       error: (err) => alert('Login failed: ' + err.error.message),
     });
   }

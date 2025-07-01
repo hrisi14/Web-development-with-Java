@@ -27,4 +27,5 @@ export const routes: Routes = [
 { path: 'user/:id/organized-events', component: OrganizedEventsComponent },
 { path: 'organized-events', component: OrganizedEventsComponent },
 { path: 'my-events', component: MyEventsComponent },
+
 ];

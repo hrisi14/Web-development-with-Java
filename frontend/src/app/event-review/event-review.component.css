@@ -134,3 +134,16 @@
   margin: 5px 0;
   color: #333;
 }
+
+.invite-box {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.invite-input {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}

@@ -23,6 +23,16 @@
       <button class="btn follow" (click)="follow()">Последвай</button>
       <button class="btn attend" (click)="visit()">Посети</button>
       <button class="btn invite" (click)="invite()">Покани</button>
+
+      <div *ngIf="showInviteForm" class="invite-box">
+        <input
+          type="text"
+          [(ngModel)]="receiverName"
+          placeholder="Enter friend's username"
+          class="invite-input"
+        />
+        <button class="btn send" (click)="submitInvitation()">Изпрати</button>
+      </div>
     </div>
 
     <p class="event-description">{{ event?.description }}</p>
