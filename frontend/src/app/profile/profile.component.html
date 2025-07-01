@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<div class="profile-container">
+  <h2 class="section-title">Вашите покани</h2>
+
+  <div *ngIf="invitations.length > 0; else noInvitations">
+    <div class="invitation-card" *ngFor="let inv of invitations">
+      <h3 class="event-title">{{ inv.eventName}}</h3>
+      <p><strong>Поканил ви е:</strong> {{ inv.senderName }}</p>
+      <!--<p><strong>Локация:</strong> {{ inv.eventLocation }}</p>-->
+      <!--<p><strong>Начало:</strong> {{ inv.eventStart | date:'yyyy-MM-dd HH:mm' }}</p>-->
+      <!--<p><strong>Край:</strong> {{ inv.eventEnd | date:'yyyy-MM-dd HH:mm' }}</p>-->
+      <button class="review-button" [routerLink]="['/review-event', inv.eventId]">
+        Преглед на събитието
+      </button>
+    </div>
+  </div>
+
+  <ng-template #noInvitations>
+    <p>Нямате покани.</p>
+  </ng-template>
+</div>

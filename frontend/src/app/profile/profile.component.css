@@ -1,0 +1,44 @@
+.profile-container {
+  background-color: #a8d5ba;
+  height: 100vh;
+  padding: 0;
+  overflow-y: scroll;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #2b2b2b;
+}
+
+.invitation-card {
+  background-color: #e7f0e9;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 0 auto 25px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #336633;
+  margin-bottom: 10px;
+}
+
+.review-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #78b78d;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.review-button:hover {
+  background-color: #5da373;
+}

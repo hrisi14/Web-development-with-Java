@@ -13,6 +13,7 @@ import { VisitedEventsComponent } from './visited-events/visited-events.componen
 import { MyEventsComponent } from './my-events/my-events.component';
 import { FollowedEventsComponent } from './followed-events/followed-events.component';
 import { OrganizedEventsComponent } from './organized-events/organized-events.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
 { path: 'register', component: RegisterComponent },
@@ -30,4 +31,6 @@ export const routes: Routes = [
 { path: 'user/:id/organized-events', component: OrganizedEventsComponent },
 { path: 'organized-events', component: OrganizedEventsComponent },
 { path: 'my-events', component: MyEventsComponent },
+{ path: 'profile/:id', component: ProfileComponent},
+{ path: 'profile', component: ProfileComponent },
 ];

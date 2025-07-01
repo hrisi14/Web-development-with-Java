@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,9 +23,9 @@ public class InvitationService {
     private final EventRepository eventRepository;
 
     //newly added
-    public InvitationDto sendInvitation(Integer senderId, String receiverName, Integer eventId) {
-        User sender = userRepository.findById(senderId)
-                .orElseThrow(() -> new RuntimeException("Sender not found with id: " + senderId));
+    public InvitationDto sendInvitation(String senderUsername, String receiverName, String eventTitle) {
+        User sender = userRepository.findByUsername(senderUsername)
+                .orElseThrow(() -> new RuntimeException("Sender not found with username: " + senderUsername));
 
         Optional<User> optReceiver = userRepository.findByUsername(receiverName);
         User receiver = null;
@@ -32,8 +33,8 @@ public class InvitationService {
             receiver = optReceiver.get();
         }
 
-        Event event = eventRepository.findById(eventId)
-                .orElseThrow(() -> new RuntimeException("Event not found with id: " + eventId));
+        Event event = eventRepository.findByTitle(eventTitle)
+                .orElseThrow(() -> new RuntimeException("Event not found with title: " + eventTitle));
 
         Invitation invitation = new Invitation();
         invitation.setSender(sender);
@@ -83,18 +84,19 @@ public class InvitationService {
         return new InvitationDto(
                 invitation.getId(),
                 invitation.getEvent().getId(),
-                invitation.getSender().getId(),
+                invitation.getEvent().getTitle(),
+                invitation.getSender().getUsername(),
                 invitation.getReceiver().getUsername(),
                 invitation.getSentAt()
         );
     }
 
     public Invitation toEntity(InvitationDto dto) {
-        User sender = userRepository.findById(dto.senderId())
+        User sender = userRepository.findByUsername(dto.senderName())
                 .orElseThrow(() -> new RuntimeException("Sender not found!"));
         User receiver = userRepository.findByUsername(dto.receiverName())
                 .orElseThrow(() -> new RuntimeException("Receiver not found!"));
-        Event event = eventRepository.findById(dto.eventId())
+        Event event = eventRepository.findByTitle(dto.eventName())
                 .orElseThrow(() -> new RuntimeException("Event not found!"));
 
         Invitation invitation = new Invitation();
@@ -103,5 +105,11 @@ public class InvitationService {
         invitation.setReceiver(receiver);
         invitation.setSentAt(dto.sentAt() != null ? dto.sentAt() : LocalDateTime.now());
         return invitation;
+    }
+
+
+    public List<InvitationDto> getInvitationsForUser(Integer userId) {
+        List<Invitation> invitations = invitationRepository.findByReceiverId(userId);
+        return invitations.stream().map(this::toDto).collect(Collectors.toList());
     }
 }

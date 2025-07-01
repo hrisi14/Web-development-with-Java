@@ -19,7 +19,9 @@
 <!--        <li><a routerLink="/organized-events" routerLinkActive="active">Организирани</a></li>-->
 <!--      </ul>-->
 <!--    </li>-->
-    <li><a routerLink="/profile" routerLinkActive="active">Моят профил</a></li>
+    <li *ngIf="userId">
+      <a [routerLink]="['/profile', userId]" routerLinkActive="active">Моят профил</a>
+    </li>
     <li><a (click)="logout()">Изход</a></li>
   </ul>
 </nav>

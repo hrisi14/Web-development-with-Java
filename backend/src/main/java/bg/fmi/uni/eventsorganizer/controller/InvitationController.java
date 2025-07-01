@@ -31,6 +31,13 @@ public class InvitationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/user/{userId}")
+    public List<InvitationDto> getInvitationsForUser(@PathVariable Integer userId) {
+        System.out.println("User invitations got!");
+        System.out.println(invitationService.getInvitationsForUser(userId));
+        return invitationService.getInvitationsForUser(userId);
+    }
+
     @PostMapping
     public ResponseEntity<InvitationDto> createInvitation(@RequestBody InvitationDto dto) {
         InvitationDto created = invitationService.createInvitation(dto);
@@ -56,7 +63,7 @@ public class InvitationController {
     @PostMapping("/send")
     public ResponseEntity<InvitationDto> sendInvitation(@RequestBody InvitationDto dto) {
         System.out.println(dto);
-        InvitationDto sent = invitationService.sendInvitation(dto.senderId(), dto.receiverName(), dto.eventId());
+        InvitationDto sent = invitationService.sendInvitation(dto.senderName(), dto.receiverName(), dto.eventName());
         return ResponseEntity.ok(sent);
     }
 }
