@@ -16,6 +16,7 @@ h2 {
     color: #333;
     background-color: #A6D8BE;
     overflow:hidden;
+    overflow-y: scroll;
 }
 
 #register-form {

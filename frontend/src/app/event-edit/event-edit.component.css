@@ -27,7 +27,6 @@ textarea, input {
   background-color: #E3735E;
 }
 
-/*End of new styles and include of old ones*/
 .edit-container {
   display: flex;
   flex-direction: row;
@@ -47,7 +46,6 @@ textarea, input {
   background-color: #f0fff5;
   padding: 2%;
 }
-
 
 .event-image {
   flex: 0 0 40%;
