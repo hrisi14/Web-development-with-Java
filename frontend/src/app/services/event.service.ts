@@ -35,4 +35,8 @@ export class EventService {
   toggleVisit(eventId: number, userId: number) {
     return this.http.post(`${this.apiUrl}/${eventId}/visit?userId=${userId}`, null, { responseType: 'text' });
   }
+
+  deleteEvent(id: number): Observable<void> {
+  return this.http.delete<void>(`http://localhost:8080/api/events/${id}`);
+}
 }

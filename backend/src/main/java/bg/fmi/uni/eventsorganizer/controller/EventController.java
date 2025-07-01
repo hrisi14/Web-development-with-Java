@@ -84,4 +84,10 @@ public class EventController {
         boolean visited = eventService.toggleVisit(eventId, userId);
         return ResponseEntity.ok().body(visited ? "visited" : "unvisited");
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEvent(@PathVariable Integer id) {
+        eventService.deleteEvent(id);  // ← your logic here
+        return ResponseEntity.noContent().build();
+    }
 }

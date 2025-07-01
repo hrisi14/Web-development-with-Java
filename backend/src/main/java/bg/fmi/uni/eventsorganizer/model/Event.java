@@ -24,7 +24,7 @@ public class Event {
     private String category;
     private String location;
 
-    @Lob
+    //@Lob
     @Column
     private String imageUrl; //a newly-added element because of event rendering
 
