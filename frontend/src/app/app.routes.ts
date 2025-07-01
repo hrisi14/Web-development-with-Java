@@ -6,6 +6,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { EventReviewComponent } from './event-review/event-review.component';
 import {EventEditComponent } from './event-edit/event-edit.component';
 import { HomeComponent } from './home/home.component';
+import { SeparateCatalogueComponent } from './separate-catalogue/separate-catalogue.component';
 
 export const routes: Routes = [
 { path: 'register', component: RegisterComponent },
@@ -17,4 +18,5 @@ export const routes: Routes = [
 { path: 'review-event/:id', component: EventReviewComponent },
 { path: 'edit-event', component: EventEditComponent },
 { path: 'review-event/:id', component: EventReviewComponent },
+{ path: 'separate-catalogue', component: SeparateCatalogueComponent },
 ];

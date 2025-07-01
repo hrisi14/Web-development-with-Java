@@ -7,10 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { OnInit } from '@angular/core';
 import { Event } from '../model/event.model';
 
+import { NavbarComponent } from '../navbar/navbar.component';
+
 @Component({
   selector: 'app-create-event',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, NavbarComponent],
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.css']
 })
