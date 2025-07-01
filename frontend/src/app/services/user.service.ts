@@ -15,4 +15,11 @@ export class  UserService {
     return this.http.get<Event[]>(`${this.apiUrl}/${userId}/liked-events`);
   }
 
+  getVisitedEvents(userId: number): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.apiUrl}/${userId}/visited-events`);
+  }
+
+  getFollowedEvents(userId: number): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.apiUrl}/${userId}/followed-events`);
+  }
 }

@@ -27,7 +27,7 @@ public class UserService {
     public Integer authenticate(String username, String password) {
         Optional<User> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get(); // Unwrap Optional
+            User user = optionalUser.get();
             if (user.getPassword().equals(password)) {
                 return user.getId();
             }
@@ -74,6 +74,18 @@ public class UserService {
                 .orElse(Set.of());
     }
 
+    public Set<Event> getFollowedEvents(Integer userId) {
+        return userRepository.findById(userId)
+                .map(User::getFollowedEvents)
+                .orElse(Set.of());
+    }
+
+    public Set<Event> getVisitedEvents(Integer userId) {
+        return userRepository.findById(userId)
+                .map(User::getVisitedEvents)
+                .orElse(Set.of());
+    }
+
     private UserDto toDto(User user) {
         return new UserDto(
                 user.getId(),
@@ -85,6 +97,12 @@ public class UserService {
                 user.getRole(),
                 user.getLikedEvents() != null
                     ? user.getLikedEvents().stream().map(Event::getId).collect(Collectors.toSet())
+                    : Set.of(),
+                user.getFollowedEvents() != null
+                    ? user.getFollowedEvents().stream().map(Event::getId).collect(Collectors.toSet())
+                    : Set.of(),
+                user.getVisitedEvents() != null
+                    ? user.getVisitedEvents().stream().map(Event::getId).collect(Collectors.toSet())
                     : Set.of()
         );
     }

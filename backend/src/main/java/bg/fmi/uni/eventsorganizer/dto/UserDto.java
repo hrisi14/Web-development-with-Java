@@ -12,5 +12,7 @@ public record UserDto(
         String lastName,
         String username,
         String role,
-        Set<Integer> likedEventIds // добавено поле
+        Set<Integer> likedEventIds,
+        Set<Integer> followedEventIds,
+        Set<Integer> visitedEventIds
 ) {}

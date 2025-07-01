@@ -10,6 +10,10 @@
   box-sizing: border-box;
   gap: 20px;
 }
+.event-stats-row {
+  display: flex;
+  gap: 2rem;
+}
 
 #event-title{
   border: 1px solid  #B2BEB5;
@@ -88,6 +92,24 @@
 }
 
 .likes {
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+}
+
+.followers {
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+}
+
+.visitors {
   margin-top: 1%;
   margin-bottom: 1%;
 

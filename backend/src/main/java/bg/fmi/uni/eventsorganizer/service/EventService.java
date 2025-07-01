@@ -70,6 +70,44 @@ public class EventService {
         return liked;
     }
 
+    @Transactional
+    public boolean toggleFollow(Integer eventId, Integer userId) {
+        Event event = eventRepository.findById(eventId).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
+        boolean followed;
+        if (user.getFollowedEvents().contains(event)) {
+            user.getFollowedEvents().remove(event);
+            event.setFollowers(event.getFollowers() != null ? event.getFollowers() - 1 : 0);
+            followed = false;
+        } else {
+            user.getFollowedEvents().add(event);
+            event.setFollowers(event.getFollowers() != null ? event.getFollowers() + 1 : 1);
+            followed = true;
+        }
+        userRepository.save(user);
+        eventRepository.save(event);
+        return followed;
+    }
+
+    @Transactional
+    public boolean toggleVisit(Integer eventId, Integer userId) {
+        Event event = eventRepository.findById(eventId).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
+        boolean visited;
+        if (user.getVisitedEvents().contains(event)) {
+            user.getVisitedEvents().remove(event);
+            event.setVisitors(event.getVisitors() != null ? event.getVisitors() - 1 : 0);
+            visited = false;
+        } else {
+            user.getVisitedEvents().add(event);
+            event.setVisitors(event.getVisitors() != null ? event.getVisitors() + 1 : 1);
+            visited = true;
+        }
+        userRepository.save(user);
+        eventRepository.save(event);
+        return visited;
+    }
+
     private EventDto toDto(Event event) {
         return new EventDto(
                 event.getId(),
@@ -79,6 +117,8 @@ public class EventService {
                 event.getLocation(),
                 event.getImageUrl(),
                 event.getLikes(),
+                event.getFollowers(),
+                event.getVisitors(),
                 event.getStartDate(),
                 event.getEndDate(),
                 event.getRules(),
@@ -96,6 +136,8 @@ public class EventService {
         event.setLocation(eventDto.location());
         event.setImageUrl(eventDto.imageUrl());
         event.setLikes(eventDto.likes());
+        event.setFollowers(eventDto.followers());
+        event.setVisitors(eventDto.visitors());
         event.setStartDate(eventDto.startDate());
         event.setEndDate(eventDto.endDate());
         event.setRules(eventDto.rules());

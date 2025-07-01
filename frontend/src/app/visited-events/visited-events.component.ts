@@ -7,13 +7,13 @@ import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-liked-events',
+  selector: 'app-visited-events',
   standalone: true,
   imports: [CommonModule, EventContainerComponent],
-  templateUrl: './liked-events.component.html',
-  styleUrls: ['./liked-events.component.css']
+  templateUrl: './visited-events.component.html',
+  styleUrls: ['./visited-events.component.css']
 })
-export class LikedEventsComponent implements OnInit {
+export class VisitedEventsComponent implements OnInit {
   events: Event[] = [];
   userId!: number;
 
@@ -34,7 +34,7 @@ export class LikedEventsComponent implements OnInit {
         const currentUserId = this.authService.getCurrentUserId();
         if (currentUserId && currentUserId > 0) {
           this.userId = currentUserId;
-          this.router.navigate(['/user', this.userId, 'liked-events']);
+          this.router.navigate(['/user', this.userId, 'visited-events']);
         } else {
           this.events = [];
         }
@@ -43,12 +43,12 @@ export class LikedEventsComponent implements OnInit {
   }
 
   loadLikedEvents() {
-    this.userService.getLikedEvents(this.userId).subscribe({
+    this.userService.getVisitedEvents(this.userId).subscribe({
       next: (events) => {
         this.events = events;
       },
       error: (err) => {
-        console.error('Грешка при зареждане на харесаните събития', err);
+        console.error('Грешка при зареждане на посетените събития', err);
         this.events = [];
       }
     });

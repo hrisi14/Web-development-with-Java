@@ -67,6 +67,26 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/{id}/followed-events")
+    public ResponseEntity<Set<Event>> getFollowedEvents(@PathVariable Integer id) {
+        return userService.getUserById(id)
+                .map(userDto -> {
+                    Set<Event> followed = userService.getFollowedEvents(id);
+                    return ResponseEntity.ok(followed);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{id}/visited-events")
+    public ResponseEntity<Set<Event>> getVisitedEvents(@PathVariable Integer id) {
+        return userService.getUserById(id)
+                .map(userDto -> {
+                    Set<Event> visited = userService.getVisitedEvents(id);
+                    return ResponseEntity.ok(visited);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable Integer id, @RequestBody UserDto dto) {
         return userService.updateUser(id, dto)

@@ -7,13 +7,13 @@ import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-liked-events',
+  selector: 'app-followed-events',
   standalone: true,
   imports: [CommonModule, EventContainerComponent],
-  templateUrl: './liked-events.component.html',
-  styleUrls: ['./liked-events.component.css']
+  templateUrl: './followed-events.component.html',
+  styleUrls: ['./followed-events.component.css']
 })
-export class LikedEventsComponent implements OnInit {
+export class FollowedEventsComponent implements OnInit {
   events: Event[] = [];
   userId!: number;
 
@@ -29,12 +29,12 @@ export class LikedEventsComponent implements OnInit {
       const idParam = params.get('id');
       if (idParam && !isNaN(Number(idParam)) && Number(idParam) > 0) {
         this.userId = Number(idParam);
-        this.loadLikedEvents();
+        this.loadFollowedEvents();
       } else {
         const currentUserId = this.authService.getCurrentUserId();
         if (currentUserId && currentUserId > 0) {
           this.userId = currentUserId;
-          this.router.navigate(['/user', this.userId, 'liked-events']);
+          this.router.navigate(['/user', this.userId, 'followed-events']);
         } else {
           this.events = [];
         }
@@ -42,8 +42,8 @@ export class LikedEventsComponent implements OnInit {
     });
   }
 
-  loadLikedEvents() {
-    this.userService.getLikedEvents(this.userId).subscribe({
+  loadFollowedEvents() {
+    this.userService.getFollowedEvents(this.userId).subscribe({
       next: (events) => {
         this.events = events;
       },

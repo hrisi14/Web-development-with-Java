@@ -44,11 +44,27 @@ export class EventReviewComponent implements OnInit {
   }
 
   follow() {
-    console.log('Follow clicked');
+    const userId = this.authService.getCurrentUserId();
+    if (!this.event?.id || !userId) return;
+    this.eventService.toggleFollow(this.event.id, userId).subscribe((res: any) => {
+      if (res === 'followed') {
+        this.event!.followers = (this.event!.followers ?? 0) + 1;
+      } else if (res === 'unfollowed') {
+        this.event!.followers = (this.event!.followers ?? 1) - 1;
+      }
+    });
   }
 
-  attend() {
-    console.log('Attend clicked');
+  visit() {
+    const userId = this.authService.getCurrentUserId();
+    if (!this.event?.id || !userId) return;
+    this.eventService.toggleVisit(this.event.id, userId).subscribe((res: any) => {
+      if (res === 'visited') {
+        this.event!.visitors = (this.event!.visitors ?? 0) + 1;
+      } else if (res === 'unvisited') {
+        this.event!.visitors = (this.event!.visitors ?? 1) - 1;
+      }
+    });
   }
 
   invite() {
