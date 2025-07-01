@@ -21,7 +21,8 @@ constructor(private http: HttpClient) {}
   login(userLogin: UserLogin): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, userLogin).pipe(
       tap((response: any) => {
-        localStorage.setItem('currentUserId', response.id);
+         console.log("Response" + response.userId);
+         localStorage.setItem('currentUserId', response.userId.toString());
       })
     );
   }

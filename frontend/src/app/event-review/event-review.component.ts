@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EventService } from '../services/event.service';
 import { Event } from '../model/event.model';
+import { InvitationService } from '../services/invitation.service';
 
 @Component({
   selector: 'app-event-review',
@@ -16,7 +17,8 @@ export class EventReviewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private eventService: EventService
+    private eventService: EventService,
+    private invitationService: InvitationService
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +41,32 @@ export class EventReviewComponent implements OnInit {
       console.log('Attend clicked');
     }
 
-    invite() {
-      console.log('Invite clicked');
+   invite(): void {
+  if (!this.event || this.event.id === undefined) {
+  alert('Event not loaded yet.');
+  return;
+}
+
+    const senderId = Number(localStorage.getItem('currentUserId'));
+
+
+    console.log("Sender");
+
+    const input = prompt("Enter friend’s user ID to invite:");
+    if (!input) return;
+
+    const receiverId = parseInt(input, 10);
+    if (isNaN(receiverId)) {
+      alert("Invalid user ID.");
+      return;
     }
+    this.invitationService.sendInvitation({
+      senderId,
+      receiverId,
+      eventId: this.event.id
+    }).subscribe({
+      next: () => alert("Invitation sent!"),
+      error: err => alert("Failed to send invitation: " + err.message)
+    });
+  }
 }
